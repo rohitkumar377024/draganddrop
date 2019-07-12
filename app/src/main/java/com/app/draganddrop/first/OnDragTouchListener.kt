@@ -40,27 +40,13 @@ class OnDragTouchListener @JvmOverloads constructor(
     private var SCROLL_THRESHOLD = 10f
     private var isOnClick: Boolean = false
 
-    /**
-     * Callback used to indicate when the drag is finished
-     */
+    //Callback used to indicate when the drag is finished
     interface OnDragActionListener {
-        /**
-         * Called when drag event is started
-         *
-         * @param view The view dragged
-         */
+         //The View Dragged
         fun onDragStart(view: View?)
-
-        /**
-         * Called when drag event is completed
-         *
-         * @param view The view dragged
-         */
+        //Called when drag event is completed
         fun onDragEnd(view: View?)
     }
-
-//    constructor(view: View, onDragActionListener: OnDragActionListener)
-//            : this(view, view.parent as View, onDragActionListener)
 
     init {
         initListener(view, parent)

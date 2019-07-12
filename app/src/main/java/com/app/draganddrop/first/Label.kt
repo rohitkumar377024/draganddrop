@@ -3,6 +3,7 @@ package com.app.draganddrop.first
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
+import android.graphics.Typeface
 import android.util.AttributeSet
 import android.view.View
 import android.view.inputmethod.InputMethodManager
@@ -45,6 +46,15 @@ class Label : RelativeLayout/* , View.OnTouchListener */ {
     private lateinit var fontWeightMediumBtn: Button //Sets font weight to Medium
     private lateinit var fontWeightBoldBtn: Button //Sets font weight to Bold
 
+    private lateinit var fontWeightBtns: ArrayList<Button>
+
+    private val typefaces = arrayListOf(
+        ResourcesCompat.getFont(context, R.font.helvetica_neue_thin),
+        ResourcesCompat.getFont(context, R.font.helvetica_neue_light),
+        ResourcesCompat.getFont(context, R.font.helvetica_neue_medium),
+        ResourcesCompat.getFont(context, R.font.helvetica_neue_bold)
+    )
+
     //Inflating Label Layout in Constructors
     constructor(context: Context?) : super(context) {
         setupView()
@@ -78,53 +88,100 @@ class Label : RelativeLayout/* , View.OnTouchListener */ {
         changeTextDoneBtn.setOnClickListener { handleChangedText(it) }
         //Handling Font Weight
         handleFontWeight()
+
+
+
+        //Initializing font weight buttons
+        fontWeightBtns = arrayListOf(
+            fontWeightThinBtn,
+            fontWeightLightBtn,
+            fontWeightMediumBtn,
+            fontWeightBoldBtn
+        )
     }
 
+    private fun fontWeightHelper(it: View, typeface: Int) {
+        sample.typeface = typefaces[typeface]
+
+        fontWeightThinBtn.setTextColor(ContextCompat.getColor(context, R.color.colorPropertiesYellow))
+
+        for (btn in fontWeightBtns) {
+            if (it == btn) {
+                val a = it as Button
+                a.setTextColor(ContextCompat.getColor(context, R.color.colorPropertiesYellow))
+            } else {
+                btn.setTextColor(ContextCompat.getColor(context, android.R.color.white))
+            }
+        }
+    }
+
+    //Handles Font Weight Stuff for Label
     private fun handleFontWeight() {
-
         fontWeightThinBtn.setOnClickListener {
-            val typeface = ResourcesCompat.getFont(context, R.font.helvetica_neue_thin)
-            sample.typeface = typeface
-
-            fontWeightThinBtn.setTextColor(ContextCompat.getColor(context, R.color.colorPropertiesYellow))
-
-            fontWeightLightBtn.setTextColor(ContextCompat.getColor(context, android.R.color.white))
-            fontWeightMediumBtn.setTextColor(ContextCompat.getColor(context, android.R.color.white))
-            fontWeightBoldBtn.setTextColor(ContextCompat.getColor(context, android.R.color.white))
+            fontWeightHelper(it, 0)
+//            sample.typeface = typefaces[0]
+//
+//            fontWeightThinBtn.setTextColor(ContextCompat.getColor(context, R.color.colorPropertiesYellow))
+//
+//            for (btn in fontWeightBtns) {
+//                if (it == btn) {
+//                    val a = it as Button
+//                    a.setTextColor(ContextCompat.getColor(context, R.color.colorPropertiesYellow))
+//                } else {
+//                    btn.setTextColor(ContextCompat.getColor(context, android.R.color.white))
+//                }
+//            }
         }
 
         fontWeightLightBtn.setOnClickListener {
-            val typeface = ResourcesCompat.getFont(context, R.font.helvetica_neue_light)
-            sample.typeface = typeface
+            fontWeightThinBtn.setOnClickListener {
+                fontWeightHelper(it, 1)
 
-            fontWeightLightBtn.setTextColor(ContextCompat.getColor(context, R.color.colorPropertiesYellow))
+//            sample.typeface = typefaces[1]
+//
+//            for (btn in fontWeightBtns) {
+//                if (it == btn) {
+//                    val a = it as Button
+//                    a.setTextColor(ContextCompat.getColor(context, R.color.colorPropertiesYellow))
+//                } else {
+//                    btn.setTextColor(ContextCompat.getColor(context, android.R.color.white))
+//                }
+//            }
+            }
 
-            fontWeightThinBtn.setTextColor(ContextCompat.getColor(context, android.R.color.white))
-            fontWeightMediumBtn.setTextColor(ContextCompat.getColor(context, android.R.color.white))
-            fontWeightBoldBtn.setTextColor(ContextCompat.getColor(context, android.R.color.white))
+            fontWeightMediumBtn.setOnClickListener {
+                fontWeightThinBtn.setOnClickListener {
+                    fontWeightHelper(it, 2)
+                }
+//            sample.typeface = typefaces[2]
+//
+//            for (btn in fontWeightBtns) {
+//                if (it == btn) {
+//                    val a = it as Button
+//                    a.setTextColor(ContextCompat.getColor(context, R.color.colorPropertiesYellow))
+//                } else {
+//                    btn.setTextColor(ContextCompat.getColor(context, android.R.color.white))
+//                }
+//            }
+            }
+
+            fontWeightBoldBtn.setOnClickListener {
+                fontWeightThinBtn.setOnClickListener {
+                    fontWeightHelper(it, 3)
+                }
+            }
         }
-
-        fontWeightMediumBtn.setOnClickListener {
-            val typeface = ResourcesCompat.getFont(context, R.font.helvetica_neue_medium)
-            sample.typeface = typeface
-
-            fontWeightMediumBtn.setTextColor(ContextCompat.getColor(context, R.color.colorPropertiesYellow))
-
-            fontWeightThinBtn.setTextColor(ContextCompat.getColor(context, android.R.color.white))
-            fontWeightLightBtn.setTextColor(ContextCompat.getColor(context, android.R.color.white))
-            fontWeightBoldBtn.setTextColor(ContextCompat.getColor(context, android.R.color.white))
-        }
-
-        fontWeightBoldBtn.setOnClickListener {
-            val typeface = ResourcesCompat.getFont(context, R.font.helvetica_neue_bold)
-            sample.typeface = typeface
-
-            fontWeightBoldBtn.setTextColor(ContextCompat.getColor(context, R.color.colorPropertiesYellow))
-
-            fontWeightThinBtn.setTextColor(ContextCompat.getColor(context, android.R.color.white))
-            fontWeightLightBtn.setTextColor(ContextCompat.getColor(context, android.R.color.white))
-            fontWeightMediumBtn.setTextColor(ContextCompat.getColor(context, android.R.color.white))
-        }
+//            sample.typeface = typefaces[3]
+//
+//            for (btn in fontWeightBtns) {
+//                if (it == btn) {
+//                    val a = it as Button
+//                    a.setTextColor(ContextCompat.getColor(context, R.color.colorPropertiesYellow))
+//                } else {
+//                    btn.setTextColor(ContextCompat.getColor(context, android.R.color.white))
+//                }
+//            }
+//        }
     }
 
     //Handles 'X' Button
