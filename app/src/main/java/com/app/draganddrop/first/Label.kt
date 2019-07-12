@@ -134,7 +134,6 @@ class Label : RelativeLayout/* , View.OnTouchListener */ {
         }
 
         fontWeightLightBtn.setOnClickListener {
-            fontWeightThinBtn.setOnClickListener {
                 fontWeightHelper(it, 1)
 
 //            sample.typeface = typefaces[1]
@@ -150,9 +149,7 @@ class Label : RelativeLayout/* , View.OnTouchListener */ {
             }
 
             fontWeightMediumBtn.setOnClickListener {
-                fontWeightThinBtn.setOnClickListener {
                     fontWeightHelper(it, 2)
-                }
 //            sample.typeface = typefaces[2]
 //
 //            for (btn in fontWeightBtns) {
@@ -166,11 +163,9 @@ class Label : RelativeLayout/* , View.OnTouchListener */ {
             }
 
             fontWeightBoldBtn.setOnClickListener {
-                fontWeightThinBtn.setOnClickListener {
                     fontWeightHelper(it, 3)
-                }
             }
-        }
+
 //            sample.typeface = typefaces[3]
 //
 //            for (btn in fontWeightBtns) {
