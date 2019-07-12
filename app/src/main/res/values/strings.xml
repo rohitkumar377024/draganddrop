@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Drag and Drop</string>
+
+    <string-array name="fruit_array">
+        <item>Mango</item>
+        <item>Orange</item>
+        <item>Apple</item>
+        <item>Strawberry</item>
+        <item>Peach</item>
+    </string-array>
+
+    <string-array name="vegetable_array">
+        <item>Cucumber</item>
+        <item>Potato</item>
+        <item>Tomato</item>
+        <item>Onion</item>
+        <item>Squash</item>
+    </string-array>
+
+</resources>
