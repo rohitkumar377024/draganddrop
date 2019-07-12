@@ -3,7 +3,6 @@ package com.app.draganddrop.first
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
-import android.graphics.Typeface
 import android.util.AttributeSet
 import android.view.View
 import android.view.inputmethod.InputMethodManager
@@ -19,8 +18,8 @@ class Label : RelativeLayout/* , View.OnTouchListener */ {
 
     //Text Size Changing SeekBar Values
     private val step = 1
-    private val min = 24
-    private val max = 72
+    private val min = 12
+    private val max = 96
 
 //    //Both help in getting the drag physics precise
 //    private var dX: Float? = null //DeltaX for detecting change in X
@@ -41,6 +40,7 @@ class Label : RelativeLayout/* , View.OnTouchListener */ {
     private lateinit var changeTextSizeDoneBtn: TextView //Done button for changing text size
     private lateinit var changeTextEditText: EditText //EditText that takes value for changing the existing text
     private lateinit var changeTextDoneBtn: TextView //Done button for changing text
+    private lateinit var textSizeEditText: EditText //EditText to see and change actual Text Size
     private lateinit var fontWeightThinBtn: Button //Sets font weight to Thin
     private lateinit var fontWeightLightBtn: Button //Sets font weight to Light
     private lateinit var fontWeightMediumBtn: Button //Sets font weight to Medium
@@ -52,8 +52,7 @@ class Label : RelativeLayout/* , View.OnTouchListener */ {
         ResourcesCompat.getFont(context, R.font.helvetica_neue_thin),
         ResourcesCompat.getFont(context, R.font.helvetica_neue_light),
         ResourcesCompat.getFont(context, R.font.helvetica_neue_medium),
-        ResourcesCompat.getFont(context, R.font.helvetica_neue_bold)
-    )
+        ResourcesCompat.getFont(context, R.font.helvetica_neue_bold))
 
     //Inflating Label Layout in Constructors
     constructor(context: Context?) : super(context) {
@@ -82,29 +81,58 @@ class Label : RelativeLayout/* , View.OnTouchListener */ {
         sample.setOnTouchListener(OnDragTouchListener(this, sample)) // --> adding touch listener here
         //Handling Change Text Size Stuff
         changeTextSizeBtn.setOnClickListener { show(changeTextSizeSeekBarLL) } // --> Show textSizeSeekBar
-        changeTextSizeDoneBtn.setOnClickListener { hide(changeTextSizeSeekBarLL) } // --> Hide textSizeSeekBar
+
         //Handling Change Text Stuff
         changeTextBtn.setOnClickListener { handleChangeTextBtn() }
         changeTextDoneBtn.setOnClickListener { handleChangedText(it) }
         //Handling Font Weight
         handleFontWeight()
 
-
-
         //Initializing font weight buttons
-        fontWeightBtns = arrayListOf(
-            fontWeightThinBtn,
-            fontWeightLightBtn,
-            fontWeightMediumBtn,
-            fontWeightBoldBtn
-        )
+        fontWeightBtns = arrayListOf(fontWeightThinBtn, fontWeightLightBtn, fontWeightMediumBtn, fontWeightBoldBtn)
+
+//        textSizeEditText.setText(((max + min) / 2).toString()) // 12 + 96 / 2 = 54
+
+//        changeTextSizeDoneBtn.setOnClickListener {
+//            //hide(changeTextSizeSeekBarLL)
+//
+//            textSizeSeekBar.progress = textSizeEditText.text.toString().toInt()
+//            //todo -> this 12 is quick fix
+//            //todo -> i guess its just the min value
+//
+//        } // --> Hide textSizeSeekBar
     }
 
+    //Handles the min, max and step for seekBar changing text size
+    private fun configureTextSizeChangeSeekBar() {
+        textSizeSeekBar.max = (max - min) / step
+        textSizeSeekBar.progress = (max - min) / 2 // --> Initial Progress [12 min 96 max ->> 54 mid] //42 coz minus
+        textSizeSeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {}
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {}
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                val value = min + progress * step
+
+                sample.textSize = value.toFloat()
+
+                //todo -> change this!
+                //sample.text = value.toString()
+                textSizeEditText.setText(value.toString())
+            }
+        })
+    }
+
+    //Handles Overall Font Weight
+    private fun handleFontWeight() {
+        fontWeightThinBtn.setOnClickListener { fontWeightHelper(it, 0) }
+        fontWeightLightBtn.setOnClickListener { fontWeightHelper(it, 1) }
+        fontWeightMediumBtn.setOnClickListener { fontWeightHelper(it, 2) }
+        fontWeightBoldBtn.setOnClickListener { fontWeightHelper(it, 3) }
+    }
+
+    //Helps in Font Weight Stuff
     private fun fontWeightHelper(it: View, typeface: Int) {
         sample.typeface = typefaces[typeface]
-
-        fontWeightThinBtn.setTextColor(ContextCompat.getColor(context, R.color.colorPropertiesYellow))
-
         for (btn in fontWeightBtns) {
             if (it == btn) {
                 val a = it as Button
@@ -113,70 +141,6 @@ class Label : RelativeLayout/* , View.OnTouchListener */ {
                 btn.setTextColor(ContextCompat.getColor(context, android.R.color.white))
             }
         }
-    }
-
-    //Handles Font Weight Stuff for Label
-    private fun handleFontWeight() {
-        fontWeightThinBtn.setOnClickListener {
-            fontWeightHelper(it, 0)
-//            sample.typeface = typefaces[0]
-//
-//            fontWeightThinBtn.setTextColor(ContextCompat.getColor(context, R.color.colorPropertiesYellow))
-//
-//            for (btn in fontWeightBtns) {
-//                if (it == btn) {
-//                    val a = it as Button
-//                    a.setTextColor(ContextCompat.getColor(context, R.color.colorPropertiesYellow))
-//                } else {
-//                    btn.setTextColor(ContextCompat.getColor(context, android.R.color.white))
-//                }
-//            }
-        }
-
-        fontWeightLightBtn.setOnClickListener {
-                fontWeightHelper(it, 1)
-
-//            sample.typeface = typefaces[1]
-//
-//            for (btn in fontWeightBtns) {
-//                if (it == btn) {
-//                    val a = it as Button
-//                    a.setTextColor(ContextCompat.getColor(context, R.color.colorPropertiesYellow))
-//                } else {
-//                    btn.setTextColor(ContextCompat.getColor(context, android.R.color.white))
-//                }
-//            }
-            }
-
-            fontWeightMediumBtn.setOnClickListener {
-                    fontWeightHelper(it, 2)
-//            sample.typeface = typefaces[2]
-//
-//            for (btn in fontWeightBtns) {
-//                if (it == btn) {
-//                    val a = it as Button
-//                    a.setTextColor(ContextCompat.getColor(context, R.color.colorPropertiesYellow))
-//                } else {
-//                    btn.setTextColor(ContextCompat.getColor(context, android.R.color.white))
-//                }
-//            }
-            }
-
-            fontWeightBoldBtn.setOnClickListener {
-                    fontWeightHelper(it, 3)
-            }
-
-//            sample.typeface = typefaces[3]
-//
-//            for (btn in fontWeightBtns) {
-//                if (it == btn) {
-//                    val a = it as Button
-//                    a.setTextColor(ContextCompat.getColor(context, R.color.colorPropertiesYellow))
-//                } else {
-//                    btn.setTextColor(ContextCompat.getColor(context, android.R.color.white))
-//                }
-//            }
-//        }
     }
 
     //Handles 'X' Button
@@ -202,6 +166,7 @@ class Label : RelativeLayout/* , View.OnTouchListener */ {
         propertiesCloseBtn = findViewById(R.id.label_properties_close_btn)
         changeTextEditText = findViewById(R.id.label_text_change_edittext)
         changeTextDoneBtn = findViewById(R.id.label_text_change_done_btn)
+        textSizeEditText = findViewById(R.id.label_text_size_edittext)
         fontWeightThinBtn = findViewById(R.id.label_font_weight_thin)
         fontWeightLightBtn = findViewById(R.id.label_font_weight_light)
         fontWeightMediumBtn = findViewById(R.id.label_font_weight_medium)
@@ -257,21 +222,6 @@ class Label : RelativeLayout/* , View.OnTouchListener */ {
             else -> changedText
         }
         hideSoftKeyboard(view)
-    }
-
-    //Handles the min, max and step for seekBar changing text size
-    private fun configureTextSizeChangeSeekBar() {
-        textSizeSeekBar.max = (max - min) / step
-        textSizeSeekBar.progress =
-            (max - min) / 2 // --> Initial Progress [24 min 72 max ->> 48 mid]
-        textSizeSeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
-            override fun onStartTrackingTouch(seekBar: SeekBar?) {}
-            override fun onStopTrackingTouch(seekBar: SeekBar?) {}
-            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-                val value = min + progress * step
-                sample.textSize = value.toFloat()
-            }
-        })
     }
 
 //    override fun onSizeChanged(xNew: Int, yNew: Int, xOld: Int, yOld: Int) {

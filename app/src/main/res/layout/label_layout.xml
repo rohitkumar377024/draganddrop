@@ -162,7 +162,7 @@
         android:layout_above="@id/label_bottom_buttons_ll"
         android:background="@color/colorPropertiesBG"
         android:orientation="horizontal"
-        android:visibility="gone">
+        android:visibility="visible">
 
         <TextView
             android:id="@+id/label_text_size_description"
@@ -188,6 +188,21 @@
             android:gravity="center"
             android:progressBackgroundTint="@android:color/white"
             android:thumbTint="@android:color/white" />
+
+        <EditText
+            android:inputType="number"
+            android:id="@+id/label_text_size_edittext"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:fontFamily="@font/helvetica_neue_light"
+            android:gravity="center"
+            android:hint=""
+            android:textColorHint="@android:color/white"
+            android:textAllCaps="false"
+            android:textColor="@color/colorPropertiesYellow"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/label_text_size_done_btn"
