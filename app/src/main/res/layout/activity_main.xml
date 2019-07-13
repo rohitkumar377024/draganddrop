@@ -6,37 +6,21 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-
-
-<!--    <com.app.draganddrop.first.Texter-->
-<!--        android:id="@+id/texter"-->
+<!--    <com.app.draganddrop.Label-->
+<!--        android:id="@+id/label_one"-->
 <!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"/>-->
-
-    <com.app.draganddrop.first.Label
-        android:id="@+id/label_one"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-<!--    <com.app.draganddrop.first.Label-->
-<!--        android:id="@+id/label_two"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
 <!--        app:layout_constraintEnd_toEndOf="parent"-->
 <!--        app:layout_constraintStart_toStartOf="parent"-->
 <!--        app:layout_constraintTop_toTopOf="parent" />-->
 
-<!--    app:layout_constraintBottom_toTopOf="@id/create_new_label_btn"-->
+    <com.app.draganddrop.demo.DragAndDropContainer
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
-    <!--    <Button-->
-<!--        android:id="@+id/create_new_label_btn"-->
-<!--        style="@style/ToolButtonStyle"-->
-<!--        android:text="Create New Label"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent" />-->
-
+<!--    <com.app.draganddrop.demo.Texter2-->
+<!--        android:id="@+id/the_real_texter2"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"/>-->
 </RelativeLayout>
