@@ -159,7 +159,7 @@
         android:id="@+id/label_seekbar_ll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@id/label_font_weight_ll"
+        android:layout_above="@id/label_change_text_ll"
         android:background="@color/colorPropertiesBG"
         android:orientation="horizontal"
         android:visibility="visible">

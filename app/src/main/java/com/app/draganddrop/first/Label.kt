@@ -10,6 +10,7 @@ import android.widget.*
 import androidx.core.content.ContextCompat
 import com.app.draganddrop.R
 import androidx.core.content.res.ResourcesCompat
+import kotlin.math.floor
 
 class Label : RelativeLayout/* , View.OnTouchListener */ {
 
@@ -18,7 +19,7 @@ class Label : RelativeLayout/* , View.OnTouchListener */ {
 
     //Text Size Changing SeekBar Values
     private val step = 1
-    private val min = 18
+    private val min = 2
     private val max = 96
 
 //    //Both help in getting the drag physics precise
@@ -98,9 +99,10 @@ class Label : RelativeLayout/* , View.OnTouchListener */ {
         //Initializing font weight buttons
         fontWeightBtns = arrayListOf(fontWeightThinBtn, fontWeightLightBtn, fontWeightMediumBtn, fontWeightBoldBtn)
 
-        //Initially set to minimum
-        textSizeEditText.setText(min.toString())
-        sample.textSize = min.toFloat()
+        //Initial values for EditText and Text Size of Label
+        val initial = floor((((max - min) / 3) - 1).toDouble())
+        textSizeEditText.setText("$initial")
+        sample.textSize =  initial.toFloat()
 
         changeTextSizeDoneBtn.setOnClickListener {
             textSizeSeekBar.progress = textSizeEditText.text.toString().toInt() - min
@@ -112,7 +114,7 @@ class Label : RelativeLayout/* , View.OnTouchListener */ {
     //Handles the min, max and step for seekBar changing text size
     private fun configureTextSizeChangeSeekBar() {
         textSizeSeekBar.max = (max - min) / step
-       // textSizeSeekBar.progress = (max + min) / 2 // --> Initial Progress [12 min 96 max ->> 54 mid] //42 coz minus
+        textSizeSeekBar.progress = floor((((max - min) / 3) - 1).toDouble()).toInt()
         textSizeSeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onStartTrackingTouch(seekBar: SeekBar?) {}
             override fun onStopTrackingTouch(seekBar: SeekBar?) {}
