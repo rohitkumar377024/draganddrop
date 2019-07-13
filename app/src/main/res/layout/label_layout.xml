@@ -17,7 +17,7 @@
         android:id="@+id/label_properties_title_ll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@id/label_change_text_ll"
+        android:layout_above="@id/label_seekbar_ll"
         android:background="@color/colorPropertiesBG"
         android:orientation="horizontal"
         android:paddingLeft="8dp"
@@ -33,12 +33,12 @@
             android:gravity="center_vertical"
             android:text="Properties"
             android:textColor="@android:color/white"
-            android:textSize="24sp" />
+            android:textSize="28sp" />
 
         <ImageView
             android:id="@+id/label_properties_close_btn"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:src="@android:drawable/ic_menu_close_clear_cancel" />
     </LinearLayout>
 
@@ -93,7 +93,7 @@
         android:id="@+id/label_font_weight_ll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@id/label_seekbar_ll"
+        android:layout_above="@id/label_bottom_buttons_ll"
         android:background="@color/colorPropertiesBG"
         android:backgroundTint="@color/colorPropertiesBG"
         android:orientation="horizontal"
@@ -159,7 +159,7 @@
         android:id="@+id/label_seekbar_ll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@id/label_bottom_buttons_ll"
+        android:layout_above="@id/label_font_weight_ll"
         android:background="@color/colorPropertiesBG"
         android:orientation="horizontal"
         android:visibility="visible">
@@ -184,7 +184,7 @@
             android:layout_height="match_parent"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            android:layout_weight="6"
+            android:layout_weight="5"
             android:gravity="center"
             android:progressBackgroundTint="@android:color/white"
             android:thumbTint="@android:color/white" />
@@ -194,13 +194,15 @@
             android:id="@+id/label_text_size_edittext"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="2"
+            android:layout_weight="1"
             android:fontFamily="@font/helvetica_neue_light"
             android:gravity="center"
             android:hint=""
+            android:maxLength="2"
             android:textColorHint="@android:color/white"
             android:textAllCaps="false"
             android:textColor="@color/colorPropertiesYellow"
+            android:backgroundTint="@color/colorPropertiesYellow"
             android:textSize="18sp"
             android:textStyle="bold" />
 

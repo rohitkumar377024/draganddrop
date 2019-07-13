@@ -18,7 +18,7 @@ class Label : RelativeLayout/* , View.OnTouchListener */ {
 
     //Text Size Changing SeekBar Values
     private val step = 1
-    private val min = 12
+    private val min = 18
     private val max = 96
 
 //    //Both help in getting the drag physics precise
@@ -53,6 +53,13 @@ class Label : RelativeLayout/* , View.OnTouchListener */ {
         ResourcesCompat.getFont(context, R.font.helvetica_neue_light),
         ResourcesCompat.getFont(context, R.font.helvetica_neue_medium),
         ResourcesCompat.getFont(context, R.font.helvetica_neue_bold))
+
+    companion object {
+        private const val TYPEFACE_THIN = 0
+        private const val TYPEFACE_LIGHT = 1
+        private const val TYPEFACE_MEDIUM = 2
+        private const val TYPEFACE_BOLD = 3
+    }
 
     //Inflating Label Layout in Constructors
     constructor(context: Context?) : super(context) {
@@ -91,22 +98,21 @@ class Label : RelativeLayout/* , View.OnTouchListener */ {
         //Initializing font weight buttons
         fontWeightBtns = arrayListOf(fontWeightThinBtn, fontWeightLightBtn, fontWeightMediumBtn, fontWeightBoldBtn)
 
-//        textSizeEditText.setText(((max + min) / 2).toString()) // 12 + 96 / 2 = 54
+        //Initially set to minimum
+        textSizeEditText.setText(min.toString())
+        sample.textSize = min.toFloat()
 
-//        changeTextSizeDoneBtn.setOnClickListener {
-//            //hide(changeTextSizeSeekBarLL)
-//
-//            textSizeSeekBar.progress = textSizeEditText.text.toString().toInt()
-//            //todo -> this 12 is quick fix
-//            //todo -> i guess its just the min value
-//
-//        } // --> Hide textSizeSeekBar
+        changeTextSizeDoneBtn.setOnClickListener {
+            textSizeSeekBar.progress = textSizeEditText.text.toString().toInt() - min
+            hideSoftKeyboard(it)
+            hide(changeTextSizeSeekBarLL)
+        }
     }
 
     //Handles the min, max and step for seekBar changing text size
     private fun configureTextSizeChangeSeekBar() {
         textSizeSeekBar.max = (max - min) / step
-        textSizeSeekBar.progress = (max - min) / 2 // --> Initial Progress [12 min 96 max ->> 54 mid] //42 coz minus
+       // textSizeSeekBar.progress = (max + min) / 2 // --> Initial Progress [12 min 96 max ->> 54 mid] //42 coz minus
         textSizeSeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onStartTrackingTouch(seekBar: SeekBar?) {}
             override fun onStopTrackingTouch(seekBar: SeekBar?) {}
@@ -114,9 +120,6 @@ class Label : RelativeLayout/* , View.OnTouchListener */ {
                 val value = min + progress * step
 
                 sample.textSize = value.toFloat()
-
-                //todo -> change this!
-                //sample.text = value.toString()
                 textSizeEditText.setText(value.toString())
             }
         })
@@ -124,10 +127,10 @@ class Label : RelativeLayout/* , View.OnTouchListener */ {
 
     //Handles Overall Font Weight
     private fun handleFontWeight() {
-        fontWeightThinBtn.setOnClickListener { fontWeightHelper(it, 0) }
-        fontWeightLightBtn.setOnClickListener { fontWeightHelper(it, 1) }
-        fontWeightMediumBtn.setOnClickListener { fontWeightHelper(it, 2) }
-        fontWeightBoldBtn.setOnClickListener { fontWeightHelper(it, 3) }
+        fontWeightThinBtn.setOnClickListener { fontWeightHelper(it, TYPEFACE_THIN) }
+        fontWeightLightBtn.setOnClickListener { fontWeightHelper(it, TYPEFACE_LIGHT) }
+        fontWeightMediumBtn.setOnClickListener { fontWeightHelper(it, TYPEFACE_MEDIUM) }
+        fontWeightBoldBtn.setOnClickListener { fontWeightHelper(it, TYPEFACE_BOLD) }
     }
 
     //Helps in Font Weight Stuff
