@@ -6,4 +6,7 @@
     <color name="colorProperties">#2B2B2D</color>
     <color name="colorPropertiesBG">#242426</color>
     <color name="colorPropertiesYellow">#FFC107</color>
+
+    <color name="colorRandomOrange">#FF5722</color>
+    <color name="colorRandomBlue">#03A9F4</color>
 </resources>
