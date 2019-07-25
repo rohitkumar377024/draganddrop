@@ -7,6 +7,19 @@
     <color name="colorPropertiesBG">#242426</color>
     <color name="colorPropertiesYellow">#FFC107</color>
 
+<!--    Added originally here in Drag and Drop-->
     <color name="colorRandomOrange">#FF5722</color>
     <color name="colorRandomBlue">#03A9F4</color>
+
+<!--    Added from MMSE -->
+    <color name="colorReadyButton">#4CAF50</color>
+    <color name="colorGoBackButton">#F57C00</color>
+    <color name="colorDoneButton">#F44336</color>
+
+    <color name="playAudioFileSelectAudioClipButton">#673AB7</color>
+    <color name="playAudioFileRecordAudioButton">#3F51B5</color>
+    <color name="playAudioFileRecordingButton">#FF5722</color>
+    <color name="playAudioFilePlaybackButton">#FFC107</color>
+    <color name="playAudioFileDoneButton">#2196F3</color>
+    <color name="playAudioFileMakeChangesButton">#00BCD4</color>
 </resources>

@@ -1,4 +1,4 @@
-package com.app.draganddrop
+package com.app.draganddrop.extras
 
 import android.annotation.SuppressLint
 import android.app.Activity
@@ -9,7 +9,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
-import com.app.draganddrop.first.OnDragTouchListener
+import com.app.draganddrop.R
 import kotlin.math.floor
 
 class Label : RelativeLayout/* , View.OnTouchListener */ {
@@ -113,10 +113,18 @@ class Label : RelativeLayout/* , View.OnTouchListener */ {
 
     //Handles Overall Font Weight
     private fun handleFontWeight() {
-        fontWeightThinBtn.setOnClickListener { fontWeightHelper(it, TYPEFACE_THIN) }
-        fontWeightLightBtn.setOnClickListener { fontWeightHelper(it, TYPEFACE_LIGHT) }
-        fontWeightMediumBtn.setOnClickListener { fontWeightHelper(it, TYPEFACE_MEDIUM) }
-        fontWeightBoldBtn.setOnClickListener { fontWeightHelper(it, TYPEFACE_BOLD) }
+        fontWeightThinBtn.setOnClickListener { fontWeightHelper(it,
+            TYPEFACE_THIN
+        ) }
+        fontWeightLightBtn.setOnClickListener { fontWeightHelper(it,
+            TYPEFACE_LIGHT
+        ) }
+        fontWeightMediumBtn.setOnClickListener { fontWeightHelper(it,
+            TYPEFACE_MEDIUM
+        ) }
+        fontWeightBoldBtn.setOnClickListener { fontWeightHelper(it,
+            TYPEFACE_BOLD
+        ) }
     }
 
     //Helps in Font Weight Stuff
@@ -125,7 +133,9 @@ class Label : RelativeLayout/* , View.OnTouchListener */ {
         for (btn in fontWeightBtns) {
             if (it == btn) {
                 val a = it as Button
-                a.setTextColor(ContextCompat.getColor(context, R.color.colorPropertiesYellow))
+                a.setTextColor(ContextCompat.getColor(context,
+                    R.color.colorPropertiesYellow
+                ))
             } else {
                 btn.setTextColor(ContextCompat.getColor(context, android.R.color.white))
             }

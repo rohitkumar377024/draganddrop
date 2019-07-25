@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:padding="8dp"
+        android:background="@color/colorPropertiesBG"
+        android:layout_alignParentTop="true"
+        android:id="@+id/play_audio_file_top_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <Button
+            android:textColor="@color/playAudioFileSelectAudioClipButton"
+            android:fontFamily="@font/helvetica_neue_medium"
+            android:background="@drawable/properties_all_round"
+            android:id="@+id/play_audio_file_select_audio_clip_btn"
+            style="@style/ToolButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_height="0dp"
+            android:text="Select Audio Clip" />
+        <Button
+            android:textColor="@color/playAudioFileRecordAudioButton"
+            android:fontFamily="@font/helvetica_neue_medium"
+            android:background="@drawable/properties_all_round"
+            android:id="@+id/play_audio_file_record_audio_btn"
+            style="@style/ToolButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_height="0dp"
+            android:layout_marginTop="16dp"
+            android:text="Record Audio" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:padding="8dp"
+        android:background="@color/colorPropertiesBG"
+        android:layout_below="@id/play_audio_file_top_ll"
+        android:id="@+id/play_audio_file_bottom_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <ToggleButton
+            android:textColor="@color/playAudioFileRecordingButton"
+            android:fontFamily="@font/helvetica_neue_light"
+            android:background="@drawable/properties_all_round"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_height="0dp"
+            android:id="@+id/play_audio_file_recording_btn"
+            style="@style/ToolButtonStyle"
+            android:textOff="Start Recording"
+            android:textOn="Stop Recording" />
+        <ToggleButton
+            android:textColor="@color/playAudioFilePlaybackButton"
+            android:fontFamily="@font/helvetica_neue_light"
+            android:background="@drawable/properties_all_round"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_height="0dp"
+            android:id="@+id/play_audio_file_playback_btn"
+            style="@style/ToolButtonStyle"
+            android:layout_marginTop="16dp"
+            android:textOff="Start Playing"
+            android:textOn="Stop Playing" />
+        <Button
+            android:textColor="@color/playAudioFileDoneButton"
+            android:fontFamily="@font/helvetica_neue_light"
+            android:background="@drawable/properties_all_round"
+            android:id="@+id/play_audio_file_done_btn"
+            style="@style/ToolButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_height="0dp"
+            android:layout_marginTop="16dp"
+            android:text="Done" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="16dp"
+        android:background="@color/colorPropertiesBG"
+        android:layout_below="@id/play_audio_file_bottom_ll"
+        android:id="@+id/play_audio_file_make_changes_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <Button
+            android:textColor="@color/playAudioFileMakeChangesButton"
+            android:fontFamily="@font/helvetica_neue_medium"
+            android:background="@drawable/properties_no_round"
+            android:id="@+id/play_audio_file_make_changes_btn"
+            style="@style/ToolButtonStyle"
+            android:layout_width="match_parent"
+            android:text="Make Changes" />
+    </LinearLayout>
+
+</RelativeLayout>

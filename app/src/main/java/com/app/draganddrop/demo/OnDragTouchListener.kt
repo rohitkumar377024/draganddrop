@@ -4,8 +4,7 @@ import android.annotation.SuppressLint
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
-import android.widget.Toast
-import com.app.draganddrop.demo.Label2
+import com.app.draganddrop.demo.tools.Label2
 import kotlin.math.abs
 
 class OnDragTouchListener @JvmOverloads constructor(
@@ -13,7 +12,6 @@ class OnDragTouchListener @JvmOverloads constructor(
     onDragActionListener: OnDragActionListener? = null) : View.OnTouchListener {
 
     val label2: Label2 = label
-
     private var mView: View? = null
     private var mParent: View? = null
     private var isDragging: Boolean = false
@@ -57,8 +55,7 @@ class OnDragTouchListener @JvmOverloads constructor(
 
     //todo -> handling click here in a separate function for clarity and separation of code
     private fun click(v: View) {
-        //Toast.makeText(v.context, "WORKER", Toast.LENGTH_SHORT).show()
-        //show properties when clicked
+        //Showing the Properties Pane
         label2.showPropertiesPane()
     }
 
@@ -73,7 +70,8 @@ class OnDragTouchListener @JvmOverloads constructor(
         isInitialized = false
     }
 
-    private fun updateBounds() {
+    //todo -> was private
+    fun updateBounds() {
         updateViewBounds()
         updateParentBounds()
         isInitialized = true

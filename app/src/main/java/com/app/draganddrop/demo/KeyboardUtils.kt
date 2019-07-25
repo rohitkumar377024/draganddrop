@@ -1,4 +1,4 @@
-package com.app.draganddrop
+package com.app.draganddrop.demo
 
 import android.app.Activity
 import android.content.Context

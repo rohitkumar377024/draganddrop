@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/label_properties_title_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/label_seekbar_ll"
+        android:background="@color/colorPropertiesBG"
+        android:orientation="horizontal"
+        android:paddingLeft="8dp"
+        android:paddingTop="8dp"
+        android:paddingRight="8dp">
+
+        <TextView
+            android:id="@+id/label_properties_title"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:fontFamily="@font/helvetica_neue_medium"
+            android:gravity="center_vertical"
+            android:text="Properties"
+            android:textColor="@android:color/white"
+            android:textSize="28sp" />
+
+        <ImageView
+            android:id="@+id/label_properties_close_btn"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@android:drawable/ic_menu_close_clear_cancel" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/label_change_text_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPropertiesBG"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/label_text_change_description"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:fontFamily="@font/helvetica_neue_light"
+            android:gravity="center_vertical|end"
+            android:paddingEnd="4dp"
+            android:text="Text"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/label_text_change_edittext"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="6"
+            android:gravity="center"
+            android:hint="Sample Text"
+            android:textColor="@android:color/white"
+            android:textColorHint="#5BFFFFFF" />
+
+        <TextView
+            android:id="@+id/label_text_change_done_btn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:fontFamily="@font/helvetica_neue_light"
+            android:gravity="center_vertical"
+            android:text="Done"
+            android:textAllCaps="false"
+            android:textColor="@color/colorPropertiesYellow"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/label_font_weight_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/label_bottom_buttons_ll"
+        android:background="@color/colorPropertiesBG"
+        android:orientation="horizontal"
+        android:padding="8dp"
+        android:visibility="visible">
+
+        <Button
+            android:id="@+id/label_font_weight_thin"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="1dp"
+            android:layout_weight="1"
+            android:background="@drawable/properties_left_round"
+            android:fontFamily="@font/helvetica_neue_thin"
+            android:text="Thin"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/label_font_weight_light"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="1dp"
+            android:layout_marginRight="1dp"
+            android:layout_weight="1"
+            android:background="@drawable/properties_no_round"
+            android:fontFamily="@font/helvetica_neue_light"
+            android:text="Light"
+            android:textAllCaps="false"
+            android:textColor="@color/colorPropertiesYellow"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/label_font_weight_medium"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="1dp"
+            android:layout_marginRight="1dp"
+            android:layout_weight="1"
+            android:background="@drawable/properties_no_round"
+            android:fontFamily="@font/helvetica_neue_medium"
+            android:text="Medium"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/label_font_weight_bold"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="1dp"
+            android:layout_weight="1"
+            android:background="@drawable/properties_right_round"
+            android:fontFamily="@font/helvetica_neue_bold"
+            android:text="Bold"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/label_seekbar_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPropertiesBG"
+        android:orientation="horizontal"
+        android:visibility="visible">
+
+        <TextView
+            android:id="@+id/label_text_size_description"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:fontFamily="@font/helvetica_neue_light"
+            android:gravity="center_vertical|end"
+            android:paddingEnd="4dp"
+            android:text="Size"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <SeekBar
+            android:id="@+id/label_text_size_seekbar"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="5"
+            android:gravity="center"
+            android:progressBackgroundTint="@android:color/white"
+            android:thumbTint="@android:color/white" />
+
+        <EditText
+            android:id="@+id/label_text_size_edittext"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:backgroundTint="@color/colorPropertiesYellow"
+            android:fontFamily="@font/helvetica_neue_light"
+            android:gravity="center"
+            android:inputType="number"
+            android:maxLength="2"
+            android:textAllCaps="false"
+            android:textColor="@color/colorPropertiesYellow"
+            android:textColorHint="@android:color/white"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/label_text_size_done_btn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:fontFamily="@font/helvetica_neue_light"
+            android:gravity="center_vertical"
+            android:text="Done"
+            android:textAllCaps="false"
+            android:textColor="@color/colorPropertiesYellow"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/label_bottom_buttons_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPropertiesBG"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <Button
+            android:id="@+id/label_change_text_size_main_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="1dp"
+            android:layout_weight="1"
+            android:background="@drawable/properties_left_round"
+            android:fontFamily="@font/helvetica_neue_light"
+            android:text="Change Size"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            android:textSize="24sp" />
+
+        <Button
+            android:id="@+id/label_change_text_main_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="1dp"
+            android:layout_weight="1"
+            android:background="@drawable/properties_right_round"
+            android:fontFamily="@font/helvetica_neue_light"
+            android:text="Change Text"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            android:textSize="24sp" />
+    </LinearLayout>
+</LinearLayout>

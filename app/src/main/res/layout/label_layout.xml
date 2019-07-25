@@ -13,7 +13,7 @@
         android:text="Sample Label"
         android:textSize="48sp" />
 
-    <include layout="@layout/properties_boss_layout"
+    <include layout="@layout/label_properties_boss_layout"
         android:id="@+id/label_properties_boss_ll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

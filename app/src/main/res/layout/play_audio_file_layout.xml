@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:textSize="28sp"
+        android:fontFamily="@font/helvetica_neue_medium"
+        android:textColor="@android:color/white"
+        android:background="@color/colorPropertiesBG"
+        android:layout_width="match_parent"
+        android:layout_above="@id/play_audio_file_properties_boss_ll"
+        android:id="@+id/play_audio_file_title_txtview"
+        style="@style/ToolTextStyle"
+        android:text="Play an Audio File" />
+
+    <include layout="@layout/play_audio_file_properties_boss_layout"
+        android:id="@+id/play_audio_file_properties_boss_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true" />
+
+</RelativeLayout>

@@ -1,4 +1,4 @@
-package com.app.draganddrop.demo
+package com.app.draganddrop.demo.tools
 
 import android.content.Context
 import android.util.AttributeSet
@@ -8,22 +8,17 @@ import android.widget.RelativeLayout
 import android.widget.SeekBar
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
-import com.app.draganddrop.KeyboardUtils
-import com.app.draganddrop.Label
 import com.app.draganddrop.R
-import com.app.draganddrop.VisibilityUtils
+import com.app.draganddrop.demo.KeyboardUtils
+import com.app.draganddrop.demo.VisibilityUtils
 import com.app.draganddrop.first.OnDragTouchListener
 import kotlinx.android.synthetic.main.label_layout.view.*
-import kotlinx.android.synthetic.main.properties_boss_layout.view.*
+import kotlinx.android.synthetic.main.label_properties_boss_layout.view.*
 import kotlin.math.floor
 
 class Label2 : RelativeLayout {
 
-    //Text Size Changing SeekBar Values
-    private val step = 1
-    private val min = 2
-    private val max = 96
-
+    //ArrayList for Typefaces
     private val typefaces = arrayListOf(
         ResourcesCompat.getFont(context, R.font.helvetica_neue_thin),
         ResourcesCompat.getFont(context, R.font.helvetica_neue_light),
@@ -31,13 +26,22 @@ class Label2 : RelativeLayout {
         ResourcesCompat.getFont(context, R.font.helvetica_neue_bold))
 
     companion object {
+        //Typefaces Constants for ArrayList
         const val TYPEFACE_THIN = 0
         const val TYPEFACE_LIGHT = 1
         const val TYPEFACE_MEDIUM = 2
         const val TYPEFACE_BOLD = 3
+        //Text Size Changing SeekBar Values
+        const val step = 1
+        const val min = 2
+        const val max = 96
     }
 
+    //Variable for storing Font Weight Buttons
     private lateinit var fontWeightBtns: ArrayList<Button>
+
+    //Storing Draggable Implementation in a Variable
+    private lateinit var dragger: OnDragTouchListener //todo
 
     constructor(context: Context?) : super(context) { setupProperties() }
     constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs)  { setupProperties() }
@@ -48,17 +52,24 @@ class Label2 : RelativeLayout {
         //Properties Pane Initially Invisible
         hidePropertiesPane()
 
+        //Initializing the ArrayList first for Font Weight Buttons to Modify Later
+        fontWeightBtns = arrayListOf(label_font_weight_thin,
+            label_font_weight_light, label_font_weight_medium, label_font_weight_bold)
+
         //Setting Touch Listener for Text
-        label_sample_textview.setOnTouchListener(OnDragTouchListener(this, label_sample_textview))
+        dragger = OnDragTouchListener(this, label_sample_textview) //todo
+        label_sample_textview.setOnTouchListener(dragger) //todo
 
         //Clicking on text shows Properties Pane
         label_sample_textview.setOnClickListener { showPropertiesPane() }
 
         //Clicking on close button hides Properties Pane
-        label_properties_close_btn.setOnClickListener { hidePropertiesPane(); KeyboardUtils().hideSoftKeyboard(context, it) }
+        label_properties_close_btn.setOnClickListener { hidePropertiesPane(); KeyboardUtils()
+            .hideSoftKeyboard(context, it) }
 
         //Showing Text Size Layout after 'Change Text Size' Button Clicked
-        label_change_text_size_main_btn.setOnClickListener { VisibilityUtils().show(label_seekbar_ll) }
+        label_change_text_size_main_btn.setOnClickListener { VisibilityUtils()
+            .show(label_seekbar_ll) }
 
         //Setting Initial values for EditText and Text Size of Label
         textSizeInitialValue()
@@ -69,44 +80,50 @@ class Label2 : RelativeLayout {
         //Making Done Button Work for Text Size
         label_text_size_done_btn.setOnClickListener { textSizeDone(it) }
 
-        fontWeightBtns = arrayListOf(label_font_weight_thin,
-            label_font_weight_light, label_font_weight_medium, label_font_weight_bold)
-
+        //Initializing the Font Weight Parameter Here
         handleFontWeight()
 
         //Handling Change Text Stuff
-        label_change_text_main_btn.setOnClickListener { handleChangeTextBtn() }
+        label_change_text_main_btn.setOnClickListener { changeTextDone() }
         label_text_change_done_btn.setOnClickListener { handleChangedText(it) }
     }
 
+    private fun updateBoundsHere() { //todo -> added a method here
+        dragger.updateBounds()
+    }
+
     private fun handleFontWeight() {
-        label_font_weight_thin.setOnClickListener { fontWeightHelper(it, TYPEFACE_THIN) }
-        label_font_weight_light.setOnClickListener { fontWeightHelper(it, TYPEFACE_LIGHT) }
-        label_font_weight_medium.setOnClickListener { fontWeightHelper(it, TYPEFACE_MEDIUM) }
-        label_font_weight_bold.setOnClickListener { fontWeightHelper(it, TYPEFACE_BOLD) }
+        label_font_weight_thin.setOnClickListener { fontWeightHelper(it,
+            TYPEFACE_THIN
+        ) }
+        label_font_weight_light.setOnClickListener { fontWeightHelper(it,
+            TYPEFACE_LIGHT
+        ) }
+        label_font_weight_medium.setOnClickListener { fontWeightHelper(it,
+            TYPEFACE_MEDIUM
+        ) }
+        label_font_weight_bold.setOnClickListener { fontWeightHelper(it,
+            TYPEFACE_BOLD
+        ) }
     }
 
     //Helps in Font Weight Stuff
     private fun fontWeightHelper(it: View, typeface: Int) {
         label_sample_textview.typeface = typefaces[typeface]
         for (btn in fontWeightBtns) {
-            if (it == btn) {
-                val a = it as Button
-                a.setTextColor(ContextCompat.getColor(context, R.color.colorPropertiesYellow))
-            } else {
-                btn.setTextColor(ContextCompat.getColor(context, android.R.color.white))
+            when (it) {
+                btn -> {
+                    val itsAButton = it as Button
+                    itsAButton.setTextColor(ContextCompat.getColor(context, R.color.colorPropertiesYellow))
+                }
+                else -> btn.setTextColor(ContextCompat.getColor(context, android.R.color.white))
             }
         }
+//        updateBoundsHere() //todo
     }
 
-
-
-
-
-
-
     //Shows change text LL, request focus for editText and shows soft keyboard
-    private fun handleChangeTextBtn() {
+    private fun changeTextDone() {
         VisibilityUtils().show(label_change_text_ll)
         label_text_change_edittext.requestFocus()
         KeyboardUtils().showSoftKeyboard(context)
@@ -125,13 +142,6 @@ class Label2 : RelativeLayout {
         KeyboardUtils().hideSoftKeyboard(context, view)
     }
 
-
-
-
-
-
-
-
     private fun textSizeInitialValue() {
         //Initial values for EditText and Text Size of Label
         val initial = floor((((max - min) / 3) - 1).toDouble())
@@ -149,6 +159,8 @@ class Label2 : RelativeLayout {
                 val value = min + progress * step
                 label_sample_textview.textSize = value.toFloat()
                 label_text_size_edittext.setText(value.toString())
+
+                updateBoundsHere() //todo
             }
         })
     }
@@ -158,11 +170,6 @@ class Label2 : RelativeLayout {
         KeyboardUtils().hideSoftKeyboard(it.context, it)
         VisibilityUtils().hide(label_seekbar_ll)
     }
-
-
-
-
-
 
     //Hide the properties pane -> All LL
     fun hidePropertiesPane() {
