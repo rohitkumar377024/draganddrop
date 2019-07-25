@@ -84,7 +84,7 @@ class Label : RelativeLayout/* , View.OnTouchListener */ {
 //        hide(changeTextSizeSeekBarLL)  // --> Initially textSizeSeekBar gone
 //
 //        //todo uncomment below line once needed
-//        // sample.setOnTouchListener(OnDragTouchListener(this, sample)) // --> adding touch listener here
+//        // sample.setOnTouchListener(LabelTouchListener(this, sample)) // --> adding touch listener here
 //        // /sample.setOnClickListener { Toast.makeText(context, "Sampler", Toast.LENGTH_SHORT).show() }
 //
 //        //Handling Change Text Size Stuff

@@ -4,9 +4,37 @@
     android:layout_height="wrap_content">
 
     <LinearLayout
+        android:id="@+id/play_audio_file_title_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPropertiesBG"
+        android:orientation="horizontal"
+        android:paddingLeft="8dp"
+        android:paddingTop="8dp"
+        android:paddingRight="8dp">
+
+        <TextView
+            android:id="@+id/play_audio_file_properties_title"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:fontFamily="@font/helvetica_neue_medium"
+            android:gravity="center_vertical"
+            android:text="Properties"
+            android:textColor="@android:color/white"
+            android:textSize="28sp" />
+
+        <ImageView
+            android:id="@+id/play_audio_file_properties_close_btn"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@android:drawable/ic_menu_close_clear_cancel" />
+    </LinearLayout>
+
+    <LinearLayout
         android:padding="8dp"
         android:background="@color/colorPropertiesBG"
-        android:layout_alignParentTop="true"
+        android:layout_below="@id/play_audio_file_title_ll"
         android:id="@+id/play_audio_file_top_ll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -92,7 +120,7 @@
         <Button
             android:textColor="@color/playAudioFileMakeChangesButton"
             android:fontFamily="@font/helvetica_neue_medium"
-            android:background="@drawable/properties_no_round"
+            android:background="@drawable/properties_all_round"
             android:id="@+id/play_audio_file_make_changes_btn"
             style="@style/ToolButtonStyle"
             android:layout_width="match_parent"

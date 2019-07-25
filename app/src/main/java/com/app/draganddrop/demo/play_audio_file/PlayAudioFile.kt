@@ -1,4 +1,4 @@
-package com.app.draganddrop.demo.tools
+package com.app.draganddrop.demo.play_audio_file
 
 import android.Manifest
 import android.app.Activity
@@ -25,23 +25,18 @@ class PlayAudioFile : RelativeLayout {
     private var isPlaybackDone: Boolean = false
     private lateinit var mFile: String
     private val REQUEST_SELECT_AUDIO_CLIP = 123
-    private lateinit var mActivity: Activity
+    private var mActivity: Activity = context as Activity
+
+    companion object {
+        const val defaultText = "Audio File Empty"
+        const val doneText = "Audio File Done"
+    }
 
     constructor(context: Context?) : super(context) { setupProperties() }
     constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs)  { setupProperties() }
 
     private fun setupProperties() {
         inflate(context, R.layout.play_audio_file_layout, this)
-
-        //play_audio_file_title_txtview.setOnTouchListener(OnDragTouchListener(this, play_audio_file_title_txtview))
-
-//        play_audio_file_make_changes_btn.setOnClickListener {
-//            play_audio_file_bottom_ll.visibility = View.GONE
-//        }
-
-
-        mActivity = context as Activity
-
         //Initializing all systems at start
         init()
     }
@@ -49,6 +44,7 @@ class PlayAudioFile : RelativeLayout {
     fun init() {
         checkPermissions()
         initVisibility()
+        initDraggability()
         initMediaPlayer()
         initFileLocation()
         handleSelectAudioClipButton()
@@ -57,6 +53,15 @@ class PlayAudioFile : RelativeLayout {
         handleMakeChangesButton()
         handleRecordingAndPlaybackFeatures(mFile)
         handleRecordingButtonState()
+
+        //todo - clean this code for close button
+        hidePropertiesPane() //todo - hide properties pane initially
+        play_audio_file_properties_close_btn.setOnClickListener { hidePropertiesPane() }
+    }
+
+    private fun initDraggability() {
+        play_audio_file_title_txtview.setOnTouchListener(
+            PlayAudioFileTouchListener(this, play_audio_file_title_txtview))
     }
 
     //Handle results for Selecting Audio Clip
@@ -95,8 +100,8 @@ class PlayAudioFile : RelativeLayout {
     }
 
     //Title Text State Handling Functions Below
-    private fun defaultTitleText() { play_audio_file_title_txtview.text = "Play an Audio File" }
-    private fun doneTitleText() { play_audio_file_title_txtview.text = "Audio File Done" }
+    private fun defaultTitleText() { play_audio_file_title_txtview.text = defaultText }
+    private fun doneTitleText() { play_audio_file_title_txtview.text = doneText }
 
     private fun checkPermissions() { //Requesting Permission RECORD_AUDIO /* first priority */
         Permissions.check(context, Manifest.permission.RECORD_AUDIO, null, object : PermissionHandler() {
@@ -243,5 +248,9 @@ class PlayAudioFile : RelativeLayout {
     private fun disable(view: View) { view.alpha = 0.4f; view.isClickable = false }
     private fun hide(view: View) { view.visibility = View.GONE }
     private fun show(view: View) { view.visibility = View.VISIBLE }
+
+    //todo -> clean code asap tomorrow
+    private fun hidePropertiesPane() = hide(play_audio_file_properties_boss_ll)
+    fun showPropertiesPane() = show(play_audio_file_properties_boss_ll)
 
 }

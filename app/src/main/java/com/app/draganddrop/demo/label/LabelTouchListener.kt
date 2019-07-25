@@ -4,10 +4,10 @@ import android.annotation.SuppressLint
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
-import com.app.draganddrop.demo.tools.Label2
+import com.app.draganddrop.demo.label.Label2
 import kotlin.math.abs
 
-class OnDragTouchListener @JvmOverloads constructor(
+class LabelTouchListener @JvmOverloads constructor(
     label: Label2, /*cb: DraggableClickListener, */view: View, parent: View = view.parent as View,
     onDragActionListener: OnDragActionListener? = null) : View.OnTouchListener {
 
@@ -18,21 +18,21 @@ class OnDragTouchListener @JvmOverloads constructor(
     private var isInitialized = false
 
     private var width: Int = 0
-    private var xWhenAttached: Float = 0.toFloat()
-    private var maxLeft: Float = 0.toFloat()
-    private var maxRight: Float = 0.toFloat()
-    private var dX: Float = 0.toFloat()
+    private var xWhenAttached: Float = 0f
+    private var maxLeft: Float = 0f
+    private var maxRight: Float = 0f
+    private var dX: Float = 0f
 
     private var height: Int = 0
-    private var yWhenAttached: Float = 0.toFloat()
-    private var maxTop: Float = 0.toFloat()
-    private var maxBottom: Float = 0.toFloat()
-    private var dY: Float = 0.toFloat()
+    private var yWhenAttached: Float = 0f
+    private var maxTop: Float = 0f
+    private var maxBottom: Float = 0f
+    private var dY: Float = 0f
 
     private var mOnDragActionListener: OnDragActionListener? = null
 
-    private var mDownX: Float = 0.toFloat()
-    private var mDownY: Float = 0.toFloat()
+    private var mDownX: Float = 0f
+    private var mDownY: Float = 0f
     private var SCROLL_THRESHOLD = 10f
     private var isOnClick: Boolean = false
 
@@ -54,7 +54,7 @@ class OnDragTouchListener @JvmOverloads constructor(
     }
 
     //todo -> handling click here in a separate function for clarity and separation of code
-    private fun click(v: View) {
+    private fun click() {
         //Showing the Properties Pane
         label2.showPropertiesPane()
     }
@@ -71,7 +71,7 @@ class OnDragTouchListener @JvmOverloads constructor(
     }
 
     //todo -> was private
-    fun updateBounds() {
+    private fun updateBounds() {
         updateViewBounds()
         updateParentBounds()
         isInitialized = true
@@ -129,7 +129,7 @@ class OnDragTouchListener @JvmOverloads constructor(
                         //TODO onClick code
                         Log.d("workx", "clicked")
 
-                        click(v)
+                        click()
 
 //                        callback.customClick(v.context, v) //todo -> CALLBACK HERE
                     }
