@@ -82,6 +82,7 @@
             android:textOff="Start Recording"
             android:textOn="Stop Recording" />
         <ToggleButton
+            android:visibility="gone"
             android:textColor="@color/playAudioFilePlaybackButton"
             android:fontFamily="@font/helvetica_neue_light"
             android:background="@drawable/properties_all_round"
@@ -117,14 +118,29 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
         <Button
-            android:textColor="@color/playAudioFileMakeChangesButton"
-            android:fontFamily="@font/helvetica_neue_medium"
-            android:background="@drawable/properties_all_round"
             android:id="@+id/play_audio_file_make_changes_btn"
             style="@style/ToolButtonStyle"
             android:layout_width="match_parent"
-            android:text="Make Changes" />
+            android:layout_height="50dp"
+            android:background="@drawable/properties_all_round"
+            android:fontFamily="@font/helvetica_neue_medium"
+            android:text="Make Changes"
+            android:textColor="@color/playAudioFileMakeChangesButton" />
     </LinearLayout>
+
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/play_audio_file_make_changes_ll"
+        android:id="@+id/on_click_include_layout_play"
+        layout="@layout/on_click_property_layout"/>
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/on_click_include_layout_play"
+        android:id="@+id/frame_include_layout_play"
+        layout="@layout/frame_property_layout"/>
 
 </RelativeLayout>

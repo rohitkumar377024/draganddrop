@@ -2,16 +2,17 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/toolbox_master_constraint_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#E9E9E9"
     tools:context=".toolbox2.Toolbox2Activity">
 
     <ScrollView
-        android:background="#D5D5D5"
         android:id="@+id/toolbox_scrollview_main"
         android:layout_width="@dimen/toolbar_icon_size"
         android:layout_height="match_parent"
+        android:background="#D5D5D5"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -34,28 +35,6 @@
                 android:background="@color/colorDoneButton"
                 android:src="@drawable/ic_play_audio_file_tool" />
 
-<!--            <TextView-->
-<!--                android:id="@+id/tool_box_image_box"-->
-<!--                style="@style/ToolboxStyle"-->
-<!--                android:text="Image Box" />-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/tool_box_screen_visibility"-->
-<!--                style="@style/ToolboxStyle"-->
-<!--                android:background="@color/colorPropertiesYellow"-->
-<!--                android:text="Screen Visibility" />-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/tool_box_drawing_box"-->
-<!--                style="@style/ToolboxStyle"-->
-<!--                android:background="@color/playAudioFileDoneButton"-->
-<!--                android:text="Drawing Box" />-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/tool_box_voice_recognition"-->
-<!--                style="@style/ToolboxStyle"-->
-<!--                android:background="@color/playAudioFileRecordAudioButton"-->
-<!--                android:text="Voice Recognition" />-->
         </LinearLayout>
     </ScrollView>
 
@@ -66,6 +45,31 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/toolbox_scrollview_main"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <Button
+        android:visibility="gone"
+        android:id="@+id/toolbox_done_dummy_btn"
+        style="@style/ToolButtonStyle"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/properties_all_round"
+        android:fontFamily="@font/helvetica_neue_light"
+        android:text="Done"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/textview_save_test_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

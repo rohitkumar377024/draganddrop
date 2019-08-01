@@ -207,6 +207,13 @@
             android:textStyle="bold" />
     </LinearLayout>
 
+    <include
+        android:id="@+id/on_click_include_layout"
+        layout="@layout/on_click_property_layout"/>
+    <include
+        android:id="@+id/frame_include_layout"
+        layout="@layout/frame_property_layout"/>
+
     <LinearLayout
         android:id="@+id/label_bottom_buttons_ll"
         android:layout_width="match_parent"
@@ -223,10 +230,36 @@
             android:layout_weight="1"
             android:background="@drawable/properties_left_round"
             android:fontFamily="@font/helvetica_neue_light"
-            android:text="Change Size"
+            android:text="Size"
             android:textAllCaps="false"
             android:textColor="@android:color/white"
-            android:textSize="24sp" />
+            android:textSize="19sp" />
+
+        <Button
+            android:id="@+id/label_on_click_main_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="1dp"
+            android:layout_weight="1"
+            android:background="@drawable/properties_no_round"
+            android:fontFamily="@font/helvetica_neue_light"
+            android:text="OnClick"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            android:textSize="19sp" />
+
+        <Button
+            android:id="@+id/label_frame_main_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="1dp"
+            android:layout_weight="1"
+            android:background="@drawable/properties_no_round"
+            android:fontFamily="@font/helvetica_neue_light"
+            android:text="Frame"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            android:textSize="19sp" />
 
         <Button
             android:id="@+id/label_change_text_main_btn"
@@ -236,9 +269,9 @@
             android:layout_weight="1"
             android:background="@drawable/properties_right_round"
             android:fontFamily="@font/helvetica_neue_light"
-            android:text="Change Text"
+            android:text="Text"
             android:textAllCaps="false"
             android:textColor="@android:color/white"
-            android:textSize="24sp" />
+            android:textSize="19sp" />
     </LinearLayout>
 </LinearLayout>

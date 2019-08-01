@@ -6,14 +6,15 @@ import android.view.View
 import android.widget.Button
 import android.widget.RelativeLayout
 import android.widget.SeekBar
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import com.app.draganddrop.R
-import com.app.draganddrop.demo.KeyboardUtils
-import com.app.draganddrop.demo.VisibilityUtils
-import com.app.draganddrop.first.LabelTouchListener
+import com.app.draganddrop.utils.Utils
+import kotlinx.android.synthetic.main.frame_property_layout.view.*
 import kotlinx.android.synthetic.main.label_layout.view.*
 import kotlinx.android.synthetic.main.label_properties_boss_layout.view.*
+import kotlinx.android.synthetic.main.on_click_property_layout.view.*
 import kotlin.math.floor
 
 class Label2 : RelativeLayout {
@@ -32,13 +33,23 @@ class Label2 : RelativeLayout {
         const val TYPEFACE_MEDIUM = 2
         const val TYPEFACE_BOLD = 3
         //Text Size Changing SeekBar Values
-        const val step = 1
-        const val min = 2
-        const val max = 96
+        const val TEXT_SIZE_STEP = 1
+        const val TEXT_SIZE_MIN = 2
+        const val TEXT_SIZE_MAX = 96
     }
 
     //Variable for storing Font Weight Buttons
     private lateinit var fontWeightBtns: ArrayList<Button>
+
+    //State Handling
+    private val stateTest = "stateTest -> Text"
+
+    fun getState(): String { return stateTest }
+
+    //text
+    //text size
+    //text style
+    //location of textview
 
     constructor(context: Context?) : super(context) { setupProperties() }
     constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs)  { setupProperties() }
@@ -60,10 +71,10 @@ class Label2 : RelativeLayout {
         label_sample_textview.setOnClickListener { showPropertiesPane() }
 
         //Clicking on close button hides Properties Pane
-        label_properties_close_btn.setOnClickListener { hidePropertiesPane(); KeyboardUtils().hideSoftKeyboard(context, it) }
+        label_properties_close_btn.setOnClickListener { hidePropertiesPane(); Utils(context).hideSoftKeyboard(context, it) }
 
         //Showing Text Size Layout after 'Change Text Size' Button Clicked
-        label_change_text_size_main_btn.setOnClickListener { VisibilityUtils().show(label_seekbar_ll) }
+        label_change_text_size_main_btn.setOnClickListener { Utils(context).show(label_seekbar_ll) }
 
         //Setting Initial values for EditText and Text Size of Label
         textSizeInitialValue()
@@ -80,6 +91,13 @@ class Label2 : RelativeLayout {
         //Handling Change Text Stuff
         label_change_text_main_btn.setOnClickListener { changeTextDone() }
         label_text_change_done_btn.setOnClickListener { handleChangedText(it) }
+
+        //todo -> Handling OnClick and Frame
+        label_on_click_main_btn.setOnClickListener { Utils(context).show(on_click_include_layout) }
+        label_frame_main_btn.setOnClickListener { Utils(context).show(frame_include_layout) }
+
+        on_click_property_setup_btn.setOnClickListener { Toast.makeText(context, "OnClick -> Clicked", Toast.LENGTH_SHORT).show() }
+        frame_property_select_btn.setOnClickListener { Toast.makeText(context, "Frame -> Clicked", Toast.LENGTH_SHORT).show() }
     }
 
     //Setting up Font Weights
@@ -106,14 +124,14 @@ class Label2 : RelativeLayout {
 
     //Shows change text LL, request focus for editText and shows soft keyboard
     private fun changeTextDone() {
-        VisibilityUtils().show(label_change_text_ll)
+        Utils(context).show(label_change_text_ll)
         label_text_change_edittext.requestFocus()
-        KeyboardUtils().showSoftKeyboard(context)
+        Utils(context).showSoftKeyboard(context)
     }
 
     //Handles changing of text
     private fun handleChangedText(view: View) {
-        VisibilityUtils().hide(label_change_text_ll)
+        Utils(context).hide(label_change_text_ll)
         val existingText = label_sample_textview.text
         val changedText = label_text_change_edittext.text.toString()
         //Handles Sample Text Change
@@ -121,26 +139,26 @@ class Label2 : RelativeLayout {
             changedText.isEmpty() -> existingText
             else -> changedText
         }
-        KeyboardUtils().hideSoftKeyboard(context, view)
+        Utils(context).hideSoftKeyboard(context, view)
     }
 
     //Text Size Value At Start
     private fun textSizeInitialValue() {
         //Initial values for EditText and Text Size of Label
-        val initial = floor((((max - min) / 3) - 1).toDouble())
+        val initial = floor((((TEXT_SIZE_MAX - TEXT_SIZE_MIN) / 3) - 1).toDouble())
         label_text_size_edittext.setText("$initial")
         label_sample_textview.textSize =  initial.toFloat()
     }
 
     //Makes the Seekbar Work for Text Size Change
     private fun configureTextSizeChangeSeekBar() {
-        label_text_size_seekbar.max = (max - min) / step
-        label_text_size_seekbar.progress = floor((((max - min) / 3) - 1).toDouble()).toInt()
+        label_text_size_seekbar.max = (TEXT_SIZE_MAX - TEXT_SIZE_MIN) / TEXT_SIZE_STEP
+        label_text_size_seekbar.progress = floor((((TEXT_SIZE_MAX - TEXT_SIZE_MIN) / 3) - 1).toDouble()).toInt()
         label_text_size_seekbar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onStartTrackingTouch(seekBar: SeekBar?) {}
             override fun onStopTrackingTouch(seekBar: SeekBar?) {}
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-                val value = min + progress * step
+                val value = TEXT_SIZE_MIN + progress * TEXT_SIZE_STEP
                 label_sample_textview.textSize = value.toFloat()
                 label_text_size_edittext.setText(value.toString())
             }
@@ -149,26 +167,28 @@ class Label2 : RelativeLayout {
 
     //Handles state when Text Size Change is done
     private fun textSizeDone(it: View) {
-        label_text_size_seekbar.progress = label_text_size_edittext.text.toString().toInt() - min
-        KeyboardUtils().hideSoftKeyboard(it.context, it)
-        VisibilityUtils().hide(label_seekbar_ll)
+        label_text_size_seekbar.progress = label_text_size_edittext.text.toString().toInt() - TEXT_SIZE_MIN
+        Utils(context).hideSoftKeyboard(it.context, it)
+        Utils(context).hide(label_seekbar_ll)
     }
 
     //Hide the properties pane -> All LL
     private fun hidePropertiesPane() {
-        VisibilityUtils().hide(label_seekbar_ll)
-        VisibilityUtils().hide(label_change_text_ll)
-        VisibilityUtils().hide(label_properties_title_ll)
-        VisibilityUtils().hide(label_bottom_buttons_ll)
-        VisibilityUtils().hide(label_font_weight_ll)
+        Utils(context).hide(label_seekbar_ll)
+        Utils(context).hide(label_change_text_ll)
+        Utils(context).hide(label_properties_title_ll)
+        Utils(context).hide(label_bottom_buttons_ll)
+        Utils(context).hide(label_font_weight_ll)
+        Utils(context).hide(on_click_include_layout)
+        Utils(context).hide(frame_include_layout)
     }
 
     //Show the properties pane - All LL except SeekBar and ChangeText one
     //Not private because it is called by OnTouchListener's Click
     fun showPropertiesPane() {
-        VisibilityUtils().show(label_properties_title_ll)
-        VisibilityUtils().show(label_bottom_buttons_ll)
-        VisibilityUtils().show(label_font_weight_ll)
+        Utils(context).show(label_properties_title_ll)
+        Utils(context).show(label_bottom_buttons_ll)
+        Utils(context).show(label_font_weight_ll)
     }
 
 }

@@ -1,10 +1,9 @@
-package com.app.draganddrop.first
+package com.app.draganddrop.demo.label
 
 import android.annotation.SuppressLint
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
-import com.app.draganddrop.demo.label.Label2
 import kotlin.math.abs
 
 class LabelTouchListener @JvmOverloads constructor(

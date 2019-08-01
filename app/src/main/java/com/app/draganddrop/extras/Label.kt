@@ -100,12 +100,12 @@ class Label : RelativeLayout/* , View.OnTouchListener */ {
 //        fontWeightBtns = arrayListOf(fontWeightThinBtn, fontWeightLightBtn, fontWeightMediumBtn, fontWeightBoldBtn)
 //
 //        //Initial values for EditText and Text Size of Label
-//        val initial = floor((((max - min) / 3) - 1).toDouble())
+//        val initial = floor((((TEXT_SIZE_MAX - TEXT_SIZE_MIN) / 3) - 1).toDouble())
 //        textSizeEditText.setText("$initial")
 //        sample.textSize =  initial.toFloat()
 //
 //        changeTextSizeDoneBtn.setOnClickListener {
-//            textSizeSeekBar.progress = textSizeEditText.text.toString().toInt() - min
+//            textSizeSeekBar.progress = textSizeEditText.text.toString().toInt() - TEXT_SIZE_MIN
 //            hideSoftKeyboard(it)
 //            hide(changeTextSizeSeekBarLL)
 //        }
@@ -185,7 +185,7 @@ class Label : RelativeLayout/* , View.OnTouchListener */ {
     }
 
     //todo -> transferred
-    //Handles the min, max and step for seekBar changing text size
+    //Handles the TEXT_SIZE_MIN, TEXT_SIZE_MAX and TEXT_SIZE_STEP for seekBar changing text size
     private fun configureTextSizeChangeSeekBar() {
         textSizeSeekBar.max = (max - min) / step
         textSizeSeekBar.progress = floor((((max - min) / 3) - 1).toDouble()).toInt()

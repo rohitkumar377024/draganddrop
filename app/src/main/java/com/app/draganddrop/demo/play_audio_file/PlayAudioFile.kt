@@ -8,14 +8,18 @@ import android.media.MediaPlayer
 import android.media.MediaRecorder
 import android.util.AttributeSet
 import android.util.Log
-import android.view.View
-import android.widget.RelativeLayout
+import android.widget.*
 import com.app.draganddrop.R
+import com.app.draganddrop.utils.Utils
 import com.nabinbhandari.android.permissions.PermissionHandler
 import com.nabinbhandari.android.permissions.Permissions
+import kotlinx.android.synthetic.main.frame_property_layout.view.*
+import kotlinx.android.synthetic.main.label_properties_boss_layout.view.*
+import kotlinx.android.synthetic.main.on_click_property_layout.view.*
 import kotlinx.android.synthetic.main.play_audio_file_layout.view.*
 import kotlinx.android.synthetic.main.play_audio_file_properties_boss_layout.view.*
 import java.io.IOException
+
 
 class PlayAudioFile : RelativeLayout {
 
@@ -31,6 +35,8 @@ class PlayAudioFile : RelativeLayout {
         const val defaultText = "Audio File Empty"
         const val doneText = "Audio File Done"
     }
+
+    private lateinit var playBtnReal: ImageView
 
     constructor(context: Context?) : super(context) { setupProperties() }
     constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs)  { setupProperties() }
@@ -54,50 +60,108 @@ class PlayAudioFile : RelativeLayout {
         handleRecordingAndPlaybackFeatures(mFile)
         handleRecordingButtonState()
 
+
+
+
+        //todo -> disabling play toggle button at start
+
+        Utils(context).disable(play_audio_file_experiment_play_toggle_btn)
+
+
+
+        //todo -> raw code for play audio real btn
+
+        playBtnReal = findViewById(R.id.play_audio_file_play_audio_imgview)
+
+        playBtnReal.setOnClickListener {
+            Toast.makeText(context, "Real Play Btn", Toast.LENGTH_SHORT).show()
+        }
+
+        play_audio_file_title_txtview.text = defaultText //Sets default text to title textview in the start
+
+        //Attaching Image to the TextView
+        //ic_play_audio.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_play_audio, 0, 0, 0)
+
         //todo - clean this code for close button
         hidePropertiesPane() //todo - hide properties pane initially
         play_audio_file_properties_close_btn.setOnClickListener { hidePropertiesPane() }
+
+        //todo todo
+        //todo
+        //todo -> Handling OnClick and Frame
+        on_click_include_layout_play.setOnClickListener { Utils(context).show(on_click_include_layout) }
+        frame_include_layout_play.setOnClickListener { Utils(context).show(frame_include_layout) }
+
+        on_click_property_setup_btn.setOnClickListener { Toast.makeText(context, "OnClick -> Clicked", Toast.LENGTH_SHORT).show() }
+        frame_property_select_btn.setOnClickListener { Toast.makeText(context, "Frame -> Clicked", Toast.LENGTH_SHORT).show() }
     }
 
     private fun initDraggability() {
-        play_audio_file_title_txtview.setOnTouchListener(
-            PlayAudioFileTouchListener(this, play_audio_file_title_txtview))
+        play_audio_file_super_main_ll.setOnTouchListener(PlayAudioFileTouchListener(this, play_audio_file_super_main_ll))
+
+        //play_audio_file_title_txtview.setOnTouchListener(PlayAudioFileTouchListener(this, play_audio_file_title_txtview))
+        //play_audio_file_play_audio_imgview.setOnTouchListener(PlayAudioFileTouchListener(this, play_audio_file_play_audio_imgview))
     }
+
+//        //Handle results for Selecting Audio Clip
+//       fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+//        //For Selecting Audio From Storage
+//        if (requestCode == 123) { //123 or 1 maybe ->> Select Audio Clip REQUEST_SELECT_AUDIO_CLIP
+//            if (resultCode == Activity.RESULT_OK) {
+//                //Selected Audio Clip
+//                val uri = data?.data
+//
+//                if (uri != null) {
+//
+//                    Toast.makeText(context, "Uri -> Not Null 2.0", Toast.LENGTH_SHORT).show()
+//                    val tv1: TextView = findViewById(R.id.play_audio_file_title_txtview)
+//                    tv1.text = "CHANGED FROM ONACTIVITYRESULT: ->"
+////                    tv1.visibility = View.GONE
+//                }
+//            }
+//        }
+//    }
 
     //Handle results for Selecting Audio Clip
-    fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        //For Selecting Audio From Storage
-        if (requestCode == REQUEST_SELECT_AUDIO_CLIP) { //1 ->> Select Audio Clip
-            if (resultCode == Activity.RESULT_OK) {
-                //Selected Audio Clip
-                val uri = data?.data
-
-                if (uri != null) {
-
-                    init() //todo --> Write some documentation for here and below and this script
-
-
-                    hide(play_audio_file_select_audio_clip_btn)
-                    hide(play_audio_file_record_audio_btn)
-
-                    doneTitleText()
-
-                    show(play_audio_file_make_changes_ll)
-
-                    play_audio_file_make_changes_btn.setOnClickListener {
-                        show(play_audio_file_top_ll)
-
-                        show(play_audio_file_select_audio_clip_btn)
-                        show(play_audio_file_record_audio_btn)
-
-                        hide(play_audio_file_make_changes_ll)
-
-                        defaultTitleText()
-                    }
-                }
-            }
-        }
-    }
+//    fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+//        //For Selecting Audio From Storage
+//        if (requestCode == REQUEST_SELECT_AUDIO_CLIP) { //1 ->> Select Audio Clip
+//            if (resultCode == Activity.RESULT_OK) {
+//                //Selected Audio Clip
+//                val uri = data?.data
+//
+//                if (uri != null) {
+//
+//                    val tv1: TextView = findViewById(R.id.play_audio_file_title_txtview)
+//                    tv1.visibility = View.GONE
+//
+//                    Toast.makeText(context, "Uri -> Not Null 2.0", Toast.LENGTH_SHORT).show()
+//
+////                    init() //todo --> Write some documentation for here and below and this script
+//
+////                    hide(play_audio_file_select_audio_clip_btn)
+////                    hide(play_audio_file_record_audio_btn)
+//
+////                    doneTitleText()
+//
+////                    play_audio_file_title_txtview.text = "LETS SEE"
+//
+////                    show(play_audio_file_make_changes_ll)
+//
+////                    play_audio_file_make_changes_btn.setOnClickListener {
+////                        show(play_audio_file_top_ll)
+////
+////                        show(play_audio_file_select_audio_clip_btn)
+////                        show(play_audio_file_record_audio_btn)
+////
+////                        hide(play_audio_file_make_changes_ll)
+////
+////                        defaultTitleText()
+////                    }
+//                }
+//            }
+//        }
+//    }
 
     //Title Text State Handling Functions Below
     private fun defaultTitleText() { play_audio_file_title_txtview.text = defaultText }
@@ -108,8 +172,8 @@ class PlayAudioFile : RelativeLayout {
             override fun onGranted() {/* no need to even show a toast here */ } }) }
 
     private fun initVisibility() { /* Visibility States at Start */
-        hide(play_audio_file_bottom_ll)   //Initially Bottom LL ->> Visibility GONE
-        hide(play_audio_file_make_changes_ll)   //Initially Make Changes LL ->> Visibility GONE
+        Utils(context).hide(play_audio_file_bottom_ll)   //Initially Bottom LL ->> Visibility GONE
+        Utils(context).hide(play_audio_file_make_changes_ll)   //Initially Make Changes LL ->> Visibility GONE
     }
 
     private fun initMediaPlayer() {
@@ -138,23 +202,23 @@ class PlayAudioFile : RelativeLayout {
     private fun handleRecordButton() { /* Handles Recording Button */
         //Once Record Button Clicked --> Top LL Visibility GONE, Bottom LL Visible
         play_audio_file_record_audio_btn.setOnClickListener {
-            hide(play_audio_file_top_ll)
-            show(play_audio_file_bottom_ll)
+            Utils(context).hide(play_audio_file_top_ll)
+            Utils(context).show(play_audio_file_bottom_ll)
         }
     }
 
     private fun handleDoneButton() { /* Handles Done Button */
         play_audio_file_done_btn.setOnClickListener {
-            hide(play_audio_file_bottom_ll) //Hides Recording Button, Playback Button and Done Button
+            Utils(context).hide(play_audio_file_bottom_ll) //Hides Recording Button, Playback Button and Done Button
             doneTitleText()
-            show(play_audio_file_make_changes_ll) //Show Make Changes LL Here
+            Utils(context).show(play_audio_file_make_changes_ll) //Show Make Changes LL Here
         }
     }
 
     private fun handleMakeChangesButton() { /* Handles Making Changes Button */
         play_audio_file_make_changes_btn.setOnClickListener {
-            show(play_audio_file_top_ll)
-            hide(play_audio_file_make_changes_ll)
+            Utils(context).show(play_audio_file_top_ll)
+            Utils(context).hide(play_audio_file_make_changes_ll)
             defaultTitleText() //Change the text to default
         }
     }
@@ -163,7 +227,10 @@ class PlayAudioFile : RelativeLayout {
         //Recording Audio feature
         play_audio_file_recording_btn.setOnCheckedChangeListener { _, isChecked -> startOrStopRec(isChecked) }
         //Playback of Recorded Audio feature
-        play_audio_file_playback_btn.setOnCheckedChangeListener { _, isChecked -> playOrStop(isChecked, mFile) }
+        //play_audio_file_playback_btn.setOnCheckedChangeListener { _, isChecked -> playOrStop(isChecked, mFile) }
+
+        //todo experimentation first pass ->
+        play_audio_file_experiment_play_toggle_btn.setOnCheckedChangeListener { _, isChecked -> playOrStop(isChecked, mFile) }
     }
 
     //Handles recording functionality completely
@@ -186,6 +253,10 @@ class PlayAudioFile : RelativeLayout {
         //Start recording
         mMediaRecorder?.start()
         isRecordingDone = false //Setting Recording State
+
+        //todo -> change playback state //todo 3
+        play_audio_file_playback_btn.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, R.drawable.properties_all_round)
+        play_audio_file_recording_btn.setCompoundDrawablesWithIntrinsicBounds(R.drawable.properties_no_round, 0, 0, 0)
     }
 
     private fun stopMediaRecorder() { /*  // Stops Media Recorder */
@@ -218,39 +289,55 @@ class PlayAudioFile : RelativeLayout {
 
     private fun stopMediaPlayer() { /* Stopping the Media Player */
         mPlayer?.stop(); mPlayer?.release(); mPlayer = null
-        play_audio_file_playback_btn.isChecked = false //Changing Toggle Button State
+
+//        play_audio_file_playback_btn.isChecked = false //Changing Toggle Button State
+        play_audio_file_experiment_play_toggle_btn.isChecked = false //Changing Toggle Button State todo
+
+
         isPlaybackDone = true //Setting Playback State
         handlePlaybackButtonState() //Handle playback state in this function
     }
 
     private fun handleRecordingButtonState() { /* Handles Recording Button States */
         if (!isRecordingDone) {
-            hide(play_audio_file_playback_btn)
-            hide(play_audio_file_done_btn)
+//            hide(play_audio_file_playback_btn)
+            Utils(context).hide(play_audio_file_done_btn)
+
+            Utils(context).disable(play_audio_file_experiment_play_toggle_btn) //todo todo
         } else {
-            show(play_audio_file_playback_btn)
-            show(play_audio_file_done_btn)
+//            show(play_audio_file_playback_btn)
+            Utils(context).show(play_audio_file_done_btn)
             play_audio_file_recording_btn.textOff = "Re-Record Audio"
+
+            Utils(context).enable(play_audio_file_experiment_play_toggle_btn) //todo todo
         }
     }
 
     private fun handlePlaybackButtonState() { /* Handles Playback Button States */
         if (!isPlaybackDone) {
-            disable(play_audio_file_recording_btn)
-            disable(play_audio_file_done_btn)
+            Utils(context).disable(play_audio_file_recording_btn)
+            Utils(context).disable(play_audio_file_done_btn)
+
+//            disable(play_audio_file_playback_btn) //todo
+
+            Utils(context).disable(play_audio_file_experiment_play_toggle_btn) //todo
         } else {
-            enable(play_audio_file_recording_btn)
-            enable(play_audio_file_done_btn)
+            Utils(context).enable(play_audio_file_recording_btn)
+            Utils(context).enable(play_audio_file_done_btn)
+
+//            enable(play_audio_file_playback_btn) //todo
+
+            Utils(context).enable(play_audio_file_experiment_play_toggle_btn) //todo
         }
     }
 
-    private fun enable(view: View) { view.alpha = 1f; view.isClickable = true }
-    private fun disable(view: View) { view.alpha = 0.4f; view.isClickable = false }
-    private fun hide(view: View) { view.visibility = View.GONE }
-    private fun show(view: View) { view.visibility = View.VISIBLE }
+//    private fun enable(view: View) { view.alpha = 1f; view.isClickable = true }
+//    private fun disable(view: View) { view.alpha = 0.4f; view.isClickable = false }
+//    private fun hide(view: View) { view.visibility = View.GONE }
+//    private fun show(view: View) { view.visibility = View.VISIBLE }
 
     //todo -> clean code asap tomorrow
-    private fun hidePropertiesPane() = hide(play_audio_file_properties_boss_ll)
-    fun showPropertiesPane() = show(play_audio_file_properties_boss_ll)
+    private fun hidePropertiesPane() = Utils(context).hide(play_audio_file_properties_boss_ll)
+    fun showPropertiesPane() = Utils(context).show(play_audio_file_properties_boss_ll)
 
 }
