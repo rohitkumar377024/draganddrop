@@ -96,8 +96,14 @@ class Label2 : RelativeLayout {
         label_on_click_main_btn.setOnClickListener { Utils(context).show(on_click_include_layout) }
         label_frame_main_btn.setOnClickListener { Utils(context).show(frame_include_layout) }
 
-        on_click_property_setup_btn.setOnClickListener { Toast.makeText(context, "OnClick -> Clicked", Toast.LENGTH_SHORT).show() }
-        frame_property_select_btn.setOnClickListener { Toast.makeText(context, "Frame -> Clicked", Toast.LENGTH_SHORT).show() }
+        on_click_property_setup_btn.setOnClickListener {
+//            Toast.makeText(context, "OnClick -> Clicked", Toast.LENGTH_SHORT).show()
+            Utils(context).toast("OnClick -> Clicked")
+        }
+        frame_property_select_btn.setOnClickListener {
+//            Toast.makeText(context, "Frame -> Clicked", Toast.LENGTH_SHORT).show()
+            Utils(context).toast("Frame -> Clicked")
+        }
     }
 
     //Setting up Font Weights

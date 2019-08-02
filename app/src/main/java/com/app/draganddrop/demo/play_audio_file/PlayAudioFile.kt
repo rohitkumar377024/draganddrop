@@ -74,7 +74,8 @@ class PlayAudioFile : RelativeLayout {
         playBtnReal = findViewById(R.id.play_audio_file_play_audio_imgview)
 
         playBtnReal.setOnClickListener {
-            Toast.makeText(context, "Real Play Btn", Toast.LENGTH_SHORT).show()
+//            Toast.makeText(context, "Real Play Btn", Toast.LENGTH_SHORT).show()
+            Utils(context).toast("Real Play Btn")
         }
 
         play_audio_file_title_txtview.text = defaultText //Sets default text to title textview in the start
@@ -92,8 +93,14 @@ class PlayAudioFile : RelativeLayout {
         on_click_include_layout_play.setOnClickListener { Utils(context).show(on_click_include_layout) }
         frame_include_layout_play.setOnClickListener { Utils(context).show(frame_include_layout) }
 
-        on_click_property_setup_btn.setOnClickListener { Toast.makeText(context, "OnClick -> Clicked", Toast.LENGTH_SHORT).show() }
-        frame_property_select_btn.setOnClickListener { Toast.makeText(context, "Frame -> Clicked", Toast.LENGTH_SHORT).show() }
+        on_click_property_setup_btn.setOnClickListener {
+//            Toast.makeText(context, "OnClick -> Clicked", Toast.LENGTH_SHORT).show()
+            Utils(context).toast("OnClick -> Clicked")
+        }
+        frame_property_select_btn.setOnClickListener {
+//            Toast.makeText(context, "Frame -> Clicked", Toast.LENGTH_SHORT).show() }
+            Utils(context).toast("Frame -> Clicked")
+        }
     }
 
     private fun initDraggability() {
