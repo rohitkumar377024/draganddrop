@@ -22,17 +22,6 @@
             android:id="@+id/play_audio_file_title_txtview"
             style="@style/ToolTextStyle"
             android:text="Play an Audio File" />
-        <ImageView
-            android:layout_margin="5dp"
-            android:visibility="gone"
-            android:id="@+id/play_audio_file_play_audio_imgview"
-            android:background="@color/playAudioFileMakeChangesButton"
-            android:layout_toRightOf="@id/play_audio_file_title_txtview"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:src="@drawable/ic_play_audio"
-            android:layout_width="50dp"
-            android:layout_height="50dp"/>
         <ToggleButton
             android:textSize="20sp"
             android:layout_marginTop="5dp"

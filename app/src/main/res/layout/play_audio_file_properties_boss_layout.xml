@@ -81,19 +81,6 @@
             style="@style/ToolButtonStyle"
             android:textOff="Start Recording"
             android:textOn="Stop Recording" />
-        <ToggleButton
-            android:visibility="gone"
-            android:textColor="@color/playAudioFilePlaybackButton"
-            android:fontFamily="@font/helvetica_neue_light"
-            android:background="@drawable/properties_all_round"
-            android:layout_width="match_parent"
-            android:layout_weight="1"
-            android:layout_height="0dp"
-            android:id="@+id/play_audio_file_playback_btn"
-            style="@style/ToolButtonStyle"
-            android:layout_marginTop="16dp"
-            android:textOff="Start Playing"
-            android:textOn="Stop Playing" />
         <Button
             android:textColor="@color/playAudioFileDoneButton"
             android:fontFamily="@font/helvetica_neue_light"
@@ -129,7 +116,7 @@
             android:text="Make Changes"
             android:textColor="@color/playAudioFileMakeChangesButton" />
     </LinearLayout>
-
+`
     <include
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
