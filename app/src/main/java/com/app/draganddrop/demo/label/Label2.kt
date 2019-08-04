@@ -6,11 +6,10 @@ import android.view.View
 import android.widget.Button
 import android.widget.RelativeLayout
 import android.widget.SeekBar
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import com.app.draganddrop.R
-import com.app.draganddrop.utils.Utils
+import com.app.draganddrop.Utils
 import kotlinx.android.synthetic.main.frame_property_layout.view.*
 import kotlinx.android.synthetic.main.label_layout.view.*
 import kotlinx.android.synthetic.main.label_properties_boss_layout.view.*
@@ -27,11 +26,6 @@ class Label2 : RelativeLayout {
         ResourcesCompat.getFont(context, R.font.helvetica_neue_bold))
 
     companion object {
-        //Typefaces Constants for ArrayList
-        const val TYPEFACE_THIN = 0
-        const val TYPEFACE_LIGHT = 1
-        const val TYPEFACE_MEDIUM = 2
-        const val TYPEFACE_BOLD = 3
         //Text Size Changing SeekBar Values
         const val TEXT_SIZE_STEP = 1
         const val TEXT_SIZE_MIN = 2
@@ -71,7 +65,9 @@ class Label2 : RelativeLayout {
         label_sample_textview.setOnClickListener { showPropertiesPane() }
 
         //Clicking on close button hides Properties Pane
-        label_properties_close_btn.setOnClickListener { hidePropertiesPane(); Utils(context).hideSoftKeyboard(context, it) }
+        label_properties_close_btn.setOnClickListener { hidePropertiesPane(); Utils(
+            context
+        ).hideSoftKeyboard(context, it) }
 
         //Showing Text Size Layout after 'Change Text Size' Button Clicked
         label_change_text_size_main_btn.setOnClickListener { Utils(context).show(label_seekbar_ll) }
@@ -108,10 +104,10 @@ class Label2 : RelativeLayout {
 
     //Setting up Font Weights
     private fun handleFontWeight() {
-        label_font_weight_thin.setOnClickListener { fontWeightHelper(it, TYPEFACE_THIN) }
-        label_font_weight_light.setOnClickListener { fontWeightHelper(it, TYPEFACE_LIGHT) }
-        label_font_weight_medium.setOnClickListener { fontWeightHelper(it, TYPEFACE_MEDIUM) }
-        label_font_weight_bold.setOnClickListener { fontWeightHelper(it, TYPEFACE_BOLD) }
+        label_font_weight_thin.setOnClickListener { fontWeightHelper(it, Utils.TYPEFACE_THIN) }
+        label_font_weight_light.setOnClickListener { fontWeightHelper(it, Utils.TYPEFACE_LIGHT) }
+        label_font_weight_medium.setOnClickListener { fontWeightHelper(it, Utils.TYPEFACE_MEDIUM) }
+        label_font_weight_bold.setOnClickListener { fontWeightHelper(it, Utils.TYPEFACE_BOLD) }
     }
 
     //Helps in Font Weight Stuff

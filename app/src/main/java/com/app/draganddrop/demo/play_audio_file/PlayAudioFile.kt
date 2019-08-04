@@ -10,7 +10,7 @@ import android.util.AttributeSet
 import android.util.Log
 import android.widget.*
 import com.app.draganddrop.R
-import com.app.draganddrop.utils.Utils
+import com.app.draganddrop.Utils
 import com.nabinbhandari.android.permissions.PermissionHandler
 import com.nabinbhandari.android.permissions.Permissions
 import kotlinx.android.synthetic.main.frame_property_layout.view.*

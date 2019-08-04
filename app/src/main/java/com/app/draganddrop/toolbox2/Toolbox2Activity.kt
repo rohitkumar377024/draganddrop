@@ -1,19 +1,15 @@
 package com.app.draganddrop.toolbox2
 
-import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.View
-import android.widget.TextView
-import com.app.draganddrop.demo.play_audio_file.PlayAudioFile
+import android.view.Menu
+import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_toolbox2.*
-import android.widget.Toast
 import com.app.draganddrop.R
+import com.app.draganddrop.command.CommandActivity
 import com.app.draganddrop.demo.label.LabelListItem
-import com.app.draganddrop.utils.CoordinateUtils
-import kotlinx.android.synthetic.main.play_audio_file_layout.*
 
 class Toolbox2Activity : AppCompatActivity() {
 
@@ -43,12 +39,25 @@ class Toolbox2Activity : AppCompatActivity() {
         }
     }
 
+    //Creating Menu to Go To Command Activity
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.main_menu, menu)
+        return true
+    }
+
+    //Handling Menu Item Clicks
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when (item?.itemId) {
+            R.id.menu_item_go_to_cmd -> startActivity(Intent(this, CommandActivity::class.java))
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
     private fun addItemToList(item: String) = itemsList.add(item)
     private fun showItemsList() {
 //        for (x in itemsList) {
 //            Log.d("DDC-13", "Item: $x")
 //        }
-
         itemsList.forEach { Log.d("DDC-13", "Item: $it") }
     }
 

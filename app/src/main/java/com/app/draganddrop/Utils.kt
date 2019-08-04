@@ -1,4 +1,4 @@
-package com.app.draganddrop.utils
+package com.app.draganddrop
 
 import android.app.Activity
 import android.content.Context
@@ -7,6 +7,18 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 
 class Utils(private val ctx: Context) {
+
+    companion object {
+        //Typefaces Constants for ArrayList
+        const val TYPEFACE_THIN = 0
+        const val TYPEFACE_LIGHT = 1
+        const val TYPEFACE_MEDIUM = 2
+        const val TYPEFACE_BOLD = 3
+    }
+
+    /* Conversions */
+    fun dpToPx(dp: Int) = (dp * ctx.resources.displayMetrics.density).toInt()
+    fun pxToDp(px: Int) = (px / ctx.resources.displayMetrics.density).toInt()
 
     /* Hide/Show */
     fun hide(view: View) { view.visibility = View.GONE }

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/command_root_relative_layout"
+    tools:context=".command.CommandActivity">
+
+    <TextView
+        android:id="@+id/command_title_txtview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/helvetica_neue_light"
+        android:gravity="center"
+        android:text="Command Screen"
+        android:textSize="42sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:layout_marginTop="32dp"
+        android:id="@+id/command_activity_input_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/command_title_txtview"
+        android:layout_alignStart="@+id/command_title_txtview"
+        android:layout_alignEnd="@+id/command_title_txtview"
+        android:ems="10"
+        android:fontFamily="@font/helvetica_neue_light"
+        android:hint="Enter your command here"
+        android:inputType="textMultiLine"
+        android:textSize="21sp"
+        app:layout_constraintEnd_toEndOf="@+id/command_title_txtview"
+        app:layout_constraintStart_toStartOf="@+id/command_title_txtview"
+        app:layout_constraintTop_toBottomOf="@+id/command_title_txtview" />
+
+    <Button
+        android:background="@color/colorRandomBlue"
+        android:id="@+id/process_command_btn"
+        style="@style/ToolButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_below="@id/command_activity_input_edittext"
+        android:layout_alignStart="@+id/command_activity_input_edittext"
+        android:layout_alignEnd="@+id/command_activity_input_edittext"
+        android:layout_marginTop="8dp"
+        android:text="Process Command"
+        app:layout_constraintEnd_toEndOf="@+id/command_activity_input_edittext"
+        app:layout_constraintStart_toStartOf="@+id/command_activity_input_edittext"
+        app:layout_constraintTop_toBottomOf="@+id/command_activity_input_edittext" />
+
+</RelativeLayout>

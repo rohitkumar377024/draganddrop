@@ -16,26 +16,24 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+            <LinearLayout
+                android:id="@+id/linearLayout2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-        <LinearLayout
-            android:id="@+id/linearLayout2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+                <ImageView
+                    android:id="@+id/tool_box_label"
+                    style="@style/ToolboxStyle"
+                    android:background="@color/colorPrimary"
+                    android:src="@drawable/ic_label_tool" />
 
-            <ImageView
-                android:id="@+id/tool_box_label"
-                style="@style/ToolboxStyle"
-                android:background="@color/colorPrimary"
-                android:src="@drawable/ic_label_tool" />
-
-            <ImageView
-                android:id="@+id/tool_box_play_audio_file"
-                style="@style/ToolboxStyle"
-                android:background="@color/colorDoneButton"
-                android:src="@drawable/ic_play_audio_file_tool" />
-
-        </LinearLayout>
+                <ImageView
+                    android:id="@+id/tool_box_play_audio_file"
+                    style="@style/ToolboxStyle"
+                    android:background="@color/colorDoneButton"
+                    android:src="@drawable/ic_play_audio_file_tool" />
+            </LinearLayout>
     </ScrollView>
 
     <com.app.draganddrop.demo.DragAndDropContainer
