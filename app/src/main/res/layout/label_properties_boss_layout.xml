@@ -74,7 +74,7 @@
             android:gravity="center_vertical"
             android:text="Done"
             android:textAllCaps="false"
-            android:textColor="@color/colorPropertiesYellow"
+            android:textColor="@color/colorMainYellow"
             android:textSize="18sp"
             android:textStyle="bold" />
     </LinearLayout>
@@ -113,7 +113,7 @@
             android:fontFamily="@font/helvetica_neue_light"
             android:text="Light"
             android:textAllCaps="false"
-            android:textColor="@color/colorPropertiesYellow"
+            android:textColor="@color/colorMainYellow"
             android:textSize="18sp" />
 
         <Button
@@ -182,13 +182,13 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:backgroundTint="@color/colorPropertiesYellow"
+            android:backgroundTint="@color/colorMainYellow"
             android:fontFamily="@font/helvetica_neue_light"
             android:gravity="center"
             android:inputType="number"
             android:maxLength="2"
             android:textAllCaps="false"
-            android:textColor="@color/colorPropertiesYellow"
+            android:textColor="@color/colorMainYellow"
             android:textColorHint="@android:color/white"
             android:textSize="18sp"
             android:textStyle="bold" />
@@ -202,7 +202,7 @@
             android:gravity="center_vertical"
             android:text="Done"
             android:textAllCaps="false"
-            android:textColor="@color/colorPropertiesYellow"
+            android:textColor="@color/colorMainYellow"
             android:textSize="18sp"
             android:textStyle="bold" />
     </LinearLayout>

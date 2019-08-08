@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.app.mmse_draganddrop.timeline.TimelineActivity">
+
+    <TextView
+        android:id="@+id/timeline_top_title_dummy_text"
+        android:fontFamily="@font/helvetica_neue_light"
+        android:gravity="center"
+        android:textSize="42sp"
+        android:text="Timeline Screen"
+        android:layout_marginTop="32dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:layout_below="@id/timeline_top_title_dummy_text"
+        android:background="@color/colorPropertiesBG"
+        android:layout_marginTop="0dp"
+        android:id="@+id/add_frame_btn"
+        android:text="Add Frame"
+        android:textColor="@color/colorMainYellow"
+        style="@style/ToolButtonStyle"
+        android:layout_width="match_parent" />
+
+    <LinearLayout
+        android:gravity="center"
+        android:background="@color/colorProperties"
+        android:layout_below="@id/add_frame_btn"
+        android:id="@+id/timeline_dynamic_ll"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </LinearLayout>
+
+    <Button
+        android:visibility="gone"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorPropertiesBG"
+        android:layout_marginTop="8dp"
+        android:id="@+id/add_textview_btn"
+        android:text="Add Text"
+        android:textColor="@color/colorMainYellow"
+        style="@style/ToolButtonStyle"
+        android:layout_width="match_parent" />
+
+</RelativeLayout>

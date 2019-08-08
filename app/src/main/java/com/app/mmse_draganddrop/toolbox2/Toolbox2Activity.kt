@@ -1,4 +1,4 @@
-package com.app.draganddrop.toolbox2
+package com.app.mmse_draganddrop.toolbox2
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -8,8 +8,9 @@ import android.view.Menu
 import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_toolbox2.*
 import com.app.draganddrop.R
-import com.app.draganddrop.command.CommandActivity
-import com.app.draganddrop.demo.label.LabelListItem
+import com.app.mmse_draganddrop.command.CommandActivity
+import com.app.mmse_draganddrop.demo.label.LabelListItem
+import com.app.mmse_draganddrop.timeline.TimelineActivity
 
 class Toolbox2Activity : AppCompatActivity() {
 
@@ -49,8 +50,15 @@ class Toolbox2Activity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item?.itemId) {
             R.id.menu_item_go_to_cmd -> startActivity(Intent(this, CommandActivity::class.java))
+            R.id.menu_go_to_timeline_screen -> { goToTimelineScreen() }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    //Starting Timeline Screen
+    private fun goToTimelineScreen() {
+        val timelineIntent = Intent(this, TimelineActivity::class.java)
+        startActivity(timelineIntent)
     }
 
     private fun addItemToList(item: String) = itemsList.add(item)

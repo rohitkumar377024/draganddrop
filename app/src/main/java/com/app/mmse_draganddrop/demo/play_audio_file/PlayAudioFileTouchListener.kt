@@ -1,16 +1,18 @@
-package com.app.draganddrop.demo.label
+package com.app.mmse_draganddrop.demo.play_audio_file
 
 import android.annotation.SuppressLint
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
+import android.widget.Toast
 import kotlin.math.abs
 
-class LabelTouchListener @JvmOverloads constructor(
-    label: Label2, /*cb: DraggableClickListener, */view: View, parent: View = view.parent as View,
+class PlayAudioFileTouchListener @JvmOverloads constructor(
+    playAudioFile: PlayAudioFile, /*cb: DraggableClickListener, */view: View, parent: View = view.parent as View,
     onDragActionListener: OnDragActionListener? = null) : View.OnTouchListener {
 
-    val label2: Label2 = label
+
+    val playAudioFile2: PlayAudioFile = playAudioFile
     private var mView: View? = null
     private var mParent: View? = null
     private var isDragging: Boolean = false
@@ -31,7 +33,7 @@ class LabelTouchListener @JvmOverloads constructor(
     private var mOnDragActionListener: OnDragActionListener? = null
 
     private var mDownX: Float = 0f
-    private var mDownY: Float = 0f
+    private var mDownY: Float = 00f
     private var SCROLL_THRESHOLD = 10f
     private var isOnClick: Boolean = false
 
@@ -39,8 +41,9 @@ class LabelTouchListener @JvmOverloads constructor(
 
     //Callback used to indicate when the drag is finished
     interface OnDragActionListener {
-         //The View Dragged
+        //The View Dragged
         fun onDragStart(view: View?)
+
         //Called when drag event is completed
         fun onDragEnd(view: View?)
     }
@@ -54,8 +57,8 @@ class LabelTouchListener @JvmOverloads constructor(
 
     //todo -> handling click here in a separate function for clarity and separation of code
     private fun click() {
-        //Showing the Properties Pane
-        label2.showPropertiesPane()
+        ///Showing the Properties Pane
+        playAudioFile2.showPropertiesPane()
     }
 
     private fun setOnDragActionListener(onDragActionListener: OnDragActionListener?) {
@@ -136,11 +139,12 @@ class LabelTouchListener @JvmOverloads constructor(
 
                 MotionEvent.ACTION_MOVE -> {
                     if (isOnClick && (abs(mDownX - event.x) > SCROLL_THRESHOLD
-                                    || abs(mDownY - event.y) > SCROLL_THRESHOLD)) {
+                                || abs(mDownY - event.y) > SCROLL_THRESHOLD)
+                    ) {
                         Log.i("workx", "movement detected")
                         isOnClick = false
                     }
-                    mView!!.animate().x(bounds[0]).y( bounds[1]).setDuration(0).start()
+                    mView!!.animate().x(bounds[0]).y(bounds[1]).setDuration(0).start()
                 }
             }
             return true

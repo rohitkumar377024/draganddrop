@@ -1,4 +1,4 @@
-package com.app.draganddrop.toolbox2
+package com.app.mmse_draganddrop.toolbox2
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

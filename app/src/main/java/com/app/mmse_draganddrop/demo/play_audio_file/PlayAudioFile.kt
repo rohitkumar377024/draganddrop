@@ -1,4 +1,4 @@
-package com.app.draganddrop.demo.play_audio_file
+package com.app.mmse_draganddrop.demo.play_audio_file
 
 import android.Manifest
 import android.app.Activity
@@ -10,7 +10,7 @@ import android.util.AttributeSet
 import android.util.Log
 import android.widget.*
 import com.app.draganddrop.R
-import com.app.draganddrop.Utils
+import com.app.mmse_draganddrop.Utils
 import com.nabinbhandari.android.permissions.PermissionHandler
 import com.nabinbhandari.android.permissions.Permissions
 import kotlinx.android.synthetic.main.frame_property_layout.view.*
@@ -59,7 +59,8 @@ class PlayAudioFile : RelativeLayout {
 
         Utils(context).disable(play_audio_file_experiment_play_toggle_btn) //Disabling Play Toggle Btn At Start
 
-        play_audio_file_title_txtview.text = defaultText //Sets default text to title textview in the start
+        play_audio_file_title_txtview.text =
+            defaultText //Sets default text to title textview in the start
 
         //todo - clean this code for close button
         hidePropertiesPane() //todo - hide properties pane initially
@@ -82,7 +83,11 @@ class PlayAudioFile : RelativeLayout {
     }
 
     private fun initDraggability() = play_audio_file_super_main_ll.setOnTouchListener(
-                PlayAudioFileTouchListener(this, play_audio_file_super_main_ll))
+        PlayAudioFileTouchListener(
+            this,
+            play_audio_file_super_main_ll
+        )
+    )
 
     //Handle results for Selecting Audio Clip
 //    fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -126,8 +131,12 @@ class PlayAudioFile : RelativeLayout {
 //    }
 
     //Title Text State Handling Functions Below
-    private fun defaultTitleText() { play_audio_file_title_txtview.text = defaultText }
-    private fun doneTitleText() { play_audio_file_title_txtview.text = doneText }
+    private fun defaultTitleText() { play_audio_file_title_txtview.text =
+        defaultText
+    }
+    private fun doneTitleText() { play_audio_file_title_txtview.text =
+        doneText
+    }
 
     private fun checkPermissions() { //Requesting Permission RECORD_AUDIO /* first priority */
         Permissions.check(context, Manifest.permission.RECORD_AUDIO, null, object : PermissionHandler() {

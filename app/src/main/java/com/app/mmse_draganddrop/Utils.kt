@@ -1,20 +1,29 @@
-package com.app.draganddrop
+package com.app.mmse_draganddrop
 
 import android.app.Activity
 import android.content.Context
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.core.content.res.ResourcesCompat
+import com.app.draganddrop.R
 
 class Utils(private val ctx: Context) {
 
     companion object {
-        //Typefaces Constants for ArrayList
+        /* Typeface Constants */
         const val TYPEFACE_THIN = 0
         const val TYPEFACE_LIGHT = 1
         const val TYPEFACE_MEDIUM = 2
         const val TYPEFACE_BOLD = 3
     }
+
+    /* Typefaces */
+    val typefaces = arrayListOf(
+        ResourcesCompat.getFont(ctx, R.font.helvetica_neue_thin),
+        ResourcesCompat.getFont(ctx, R.font.helvetica_neue_light),
+        ResourcesCompat.getFont(ctx, R.font.helvetica_neue_medium),
+        ResourcesCompat.getFont(ctx, R.font.helvetica_neue_bold))
 
     /* Conversions */
     fun dpToPx(dp: Int) = (dp * ctx.resources.displayMetrics.density).toInt()

@@ -1,12 +1,12 @@
-package com.app.draganddrop.demo
+package com.app.mmse_draganddrop.demo
 
 import android.annotation.SuppressLint
 import android.content.Context
 import android.util.AttributeSet
 import android.widget.*
 import com.app.draganddrop.R
-import com.app.draganddrop.demo.label.Label2
-import com.app.draganddrop.demo.play_audio_file.PlayAudioFile
+import com.app.mmse_draganddrop.demo.label.Label2
+import com.app.mmse_draganddrop.demo.play_audio_file.PlayAudioFile
 import kotlinx.android.synthetic.main.activity_toolbox2.view.*
 
 class DragAndDropContainer: RelativeLayout {
@@ -22,5 +22,9 @@ class DragAndDropContainer: RelativeLayout {
     }
 
     fun addLabelOriginal() = addView(Label2(context))
-    fun addPlayAudioFileOriginal() = addView(PlayAudioFile(context))
+    fun addPlayAudioFileOriginal() = addView(
+        PlayAudioFile(
+            context
+        )
+    )
 }

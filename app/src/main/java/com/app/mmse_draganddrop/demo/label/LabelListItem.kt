@@ -1,4 +1,4 @@
-package com.app.draganddrop.demo.label
+package com.app.mmse_draganddrop.demo.label
 
 class LabelListItem {
     val text = "Label Added"

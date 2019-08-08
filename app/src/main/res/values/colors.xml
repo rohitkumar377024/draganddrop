@@ -5,7 +5,7 @@
     <color name="colorAccent">#D81B60</color>
     <color name="colorProperties">#2B2B2D</color>
     <color name="colorPropertiesBG">#242426</color>
-    <color name="colorPropertiesYellow">#FFC107</color>
+    <color name="colorMainYellow">#FFC107</color>
 
 <!--    Added originally here in Drag and Drop-->
     <color name="colorRandomOrange">#FF5722</color>

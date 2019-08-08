@@ -1,4 +1,4 @@
-package com.app.draganddrop.demo.label
+package com.app.mmse_draganddrop.demo.label
 
 import android.content.Context
 import android.util.AttributeSet
@@ -9,7 +9,7 @@ import android.widget.SeekBar
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import com.app.draganddrop.R
-import com.app.draganddrop.Utils
+import com.app.mmse_draganddrop.Utils
 import kotlinx.android.synthetic.main.frame_property_layout.view.*
 import kotlinx.android.synthetic.main.label_layout.view.*
 import kotlinx.android.synthetic.main.label_properties_boss_layout.view.*
@@ -17,13 +17,6 @@ import kotlinx.android.synthetic.main.on_click_property_layout.view.*
 import kotlin.math.floor
 
 class Label2 : RelativeLayout {
-
-    //ArrayList for Typefaces
-    private val typefaces = arrayListOf(
-        ResourcesCompat.getFont(context, R.font.helvetica_neue_thin),
-        ResourcesCompat.getFont(context, R.font.helvetica_neue_light),
-        ResourcesCompat.getFont(context, R.font.helvetica_neue_medium),
-        ResourcesCompat.getFont(context, R.font.helvetica_neue_bold))
 
     companion object {
         //Text Size Changing SeekBar Values
@@ -59,7 +52,12 @@ class Label2 : RelativeLayout {
             label_font_weight_light, label_font_weight_medium, label_font_weight_bold)
 
         //Setting Touch Listener for Text
-        label_sample_textview.setOnTouchListener(LabelTouchListener(this, label_sample_textview))
+        label_sample_textview.setOnTouchListener(
+            LabelTouchListener(
+                this,
+                label_sample_textview
+            )
+        )
 
         //Clicking on text shows Properties Pane
         label_sample_textview.setOnClickListener { showPropertiesPane() }
@@ -70,7 +68,8 @@ class Label2 : RelativeLayout {
         ).hideSoftKeyboard(context, it) }
 
         //Showing Text Size Layout after 'Change Text Size' Button Clicked
-        label_change_text_size_main_btn.setOnClickListener { Utils(context).show(label_seekbar_ll) }
+        label_change_text_size_main_btn.setOnClickListener { Utils(context)
+            .show(label_seekbar_ll) }
 
         //Setting Initial values for EditText and Text Size of Label
         textSizeInitialValue()
@@ -112,12 +111,12 @@ class Label2 : RelativeLayout {
 
     //Helps in Font Weight Stuff
     private fun fontWeightHelper(it: View, typeface: Int) {
-        label_sample_textview.typeface = typefaces[typeface]
+        label_sample_textview.typeface = Utils(context).typefaces[typeface]
         for (btn in fontWeightBtns) {
             when (it) {
                 btn -> {
                     val itsAButton = it as Button
-                    itsAButton.setTextColor(ContextCompat.getColor(context, R.color.colorPropertiesYellow))
+                    itsAButton.setTextColor(ContextCompat.getColor(context, R.color.colorMainYellow))
                 }
                 else -> btn.setTextColor(ContextCompat.getColor(context, android.R.color.white))
             }

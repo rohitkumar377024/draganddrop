@@ -5,7 +5,7 @@
     android:id="@+id/saved_result_master2_constraintlayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".toolbox2.ToolboxSavedResultActivity">
+    tools:context="com.app.mmse_draganddrop.toolbox2.ToolboxSavedResultActivity">
 
     <TextView
         android:id="@+id/restoring_textview"

@@ -5,4 +5,8 @@
         android:id="@+id/menu_item_go_to_cmd"
         android:title="Command Line"
         app:showAsAction="always" />
+    <item
+        android:id="@+id/menu_go_to_timeline_screen"
+        android:title="Timeline"
+        app:showAsAction="always" />
 </menu>

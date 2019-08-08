@@ -1,0 +1,79 @@
+package com.app.mmse_draganddrop.timeline
+
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.util.Log
+import android.view.View
+import android.widget.TextView
+import android.widget.Toast
+import androidx.core.content.ContextCompat
+import com.app.draganddrop.R
+import com.app.mmse_draganddrop.Utils
+import kotlinx.android.synthetic.main.activity_timeline.*
+import java.util.*
+
+class TimelineActivity : AppCompatActivity() {
+
+    companion object {
+        const val FRAMES_DEFAULT = 5
+    }
+
+    //At start, the frameCounter will be equal to default
+    var frameCounter = FRAMES_DEFAULT
+
+    //Frame number 0 at start
+    var frameNumberSelected = 0
+
+    //each frame related state can be retrieved by value stored in its position in arrayList
+    val stateManager = arrayListOf<String>()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_timeline)
+
+        /* Adding the default frames at start */
+        addDefaultFrames()
+        /* Adds frame by pre-incrementing frame counter */
+        add_frame_btn.setOnClickListener { addFrame((++frameCounter).toString()) }
+
+        add_textview_btn.setOnClickListener {
+            Utils(this).toast("TextView Added")
+            Log.d("checker", stateManager.toString())
+        }
+    }
+
+    /* Handles clicking of a specific frame */
+    private fun processFrameClick(frameNumber: Int, view: View) {
+        Utils(this).toast("Frame $frameNumber")
+        showFrameSelected(view as TextView)
+        frameNumberSelected = frameNumber //Keeping track of frame number selected with click
+    }
+
+    /* Logic for Adding a Frame */
+    private fun addFrame(message: String) {
+        val a = TextView(this).apply {
+            text = message //Assigning the passed value as text for Frame
+            textSize = 35f
+            setPadding(15, 15, 15, 15)
+            setTextColor(ContextCompat.getColor(applicationContext, R.color.colorMainYellow))
+            typeface = Utils(applicationContext).typefaces[Utils.TYPEFACE_THIN]
+            setOnClickListener { processFrameClick(message.toInt(), it) }
+        }
+        timeline_dynamic_ll.addView(a)
+
+        stateManager.add(message) //todo -> adding state here
+    }
+
+    /* Highlights the frame selected */
+    private fun showFrameSelected(textView: TextView) {
+        textView.typeface = Utils(this).typefaces[Utils.TYPEFACE_MEDIUM]
+    }
+
+    /* Adds the default number of frames */
+    private fun addDefaultFrames() {
+        for (i in 1..FRAMES_DEFAULT) {
+            addFrame(i.toString())
+        }
+    }
+
+}

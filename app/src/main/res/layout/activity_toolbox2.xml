@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#E9E9E9"
-    tools:context=".toolbox2.Toolbox2Activity">
+    tools:context="com.app.mmse_draganddrop.toolbox2.Toolbox2Activity">
 
     <ScrollView
         android:id="@+id/toolbox_scrollview_main"
@@ -36,7 +36,7 @@
             </LinearLayout>
     </ScrollView>
 
-    <com.app.draganddrop.demo.DragAndDropContainer
+    <com.app.mmse_draganddrop.demo.DragAndDropContainer
         android:id="@+id/drag_and_drop_container"
         android:layout_width="0dp"
         android:layout_height="match_parent"
