@@ -3,6 +3,7 @@ package com.app.mmse_draganddrop.command
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import com.app.draganddrop.R
 import kotlinx.android.synthetic.main.activity_command.*
 import android.view.*

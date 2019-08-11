@@ -22,9 +22,5 @@ class DragAndDropContainer: RelativeLayout {
     }
 
     fun addLabelOriginal() = addView(Label2(context))
-    fun addPlayAudioFileOriginal() = addView(
-        PlayAudioFile(
-            context
-        )
-    )
+    fun addPlayAudioFileOriginal() = addView(PlayAudioFile(context))
 }

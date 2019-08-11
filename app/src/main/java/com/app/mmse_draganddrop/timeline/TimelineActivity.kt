@@ -2,30 +2,20 @@ package com.app.mmse_draganddrop.timeline
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.TextView
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.app.draganddrop.R
 import com.app.mmse_draganddrop.Utils
 import kotlinx.android.synthetic.main.activity_timeline.*
-import java.util.*
 
 class TimelineActivity : AppCompatActivity() {
 
     companion object {
-        const val FRAMES_DEFAULT = 5
+        const val FRAMES_DEFAULT = 5 //Default Number for Frames at Start
     }
 
-    //At start, the frameCounter will be equal to default
-    var frameCounter = FRAMES_DEFAULT
-
-    //Frame number 0 at start
-    var frameNumberSelected = 0
-
-    //each frame related state can be retrieved by value stored in its position in arrayList
-    val stateManager = arrayListOf<String>()
+    var frameCounter = FRAMES_DEFAULT  //At start, the frameCounter will be equal to default
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,7 +28,6 @@ class TimelineActivity : AppCompatActivity() {
 
         add_textview_btn.setOnClickListener {
             Utils(this).toast("TextView Added")
-            Log.d("checker", stateManager.toString())
         }
     }
 
@@ -46,7 +35,6 @@ class TimelineActivity : AppCompatActivity() {
     private fun processFrameClick(frameNumber: Int, view: View) {
         Utils(this).toast("Frame $frameNumber")
         showFrameSelected(view as TextView)
-        frameNumberSelected = frameNumber //Keeping track of frame number selected with click
     }
 
     /* Logic for Adding a Frame */
@@ -60,8 +48,6 @@ class TimelineActivity : AppCompatActivity() {
             setOnClickListener { processFrameClick(message.toInt(), it) }
         }
         timeline_dynamic_ll.addView(a)
-
-        stateManager.add(message) //todo -> adding state here
     }
 
     /* Highlights the frame selected */

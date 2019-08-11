@@ -38,7 +38,6 @@
     </LinearLayout>
 
     <Button
-        android:visibility="gone"
         android:layout_alignParentBottom="true"
         android:background="@color/colorPropertiesBG"
         android:layout_marginTop="8dp"
