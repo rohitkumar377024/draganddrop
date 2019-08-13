@@ -40,7 +40,7 @@ class Toolbox2Activity : AppCompatActivity() {
         }
     }
 
-    //Creating Menu to Go To Command Activity
+    //Creating Menu to Go To CmdUtils Activity
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.main_menu, menu)
         return true

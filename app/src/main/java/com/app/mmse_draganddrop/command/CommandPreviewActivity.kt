@@ -1,100 +1,102 @@
 package com.app.mmse_draganddrop.command
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
+import android.view.Gravity
+import android.widget.RelativeLayout
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.app.draganddrop.R
-import java.util.regex.Matcher
+import com.app.mmse_draganddrop.Utils
 import java.util.regex.Pattern
 
 class CommandPreviewActivity : AppCompatActivity() {
-
-//    companion object {
-//        const val PROPERTY_VALUE_DELIMITER = "="
-//        const val MULTIPLE_VALUES_DELIMITER = ":"
-//        //Constants for Property Name and Value Identification
-//        const val PROPERTY = 0
-//        const val VALUE = 1
-//    }
-
-    //Creating Object from Command Class
-    private val command = Command()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_command_preview)
 
-        //processCommand()
-        Log.d("preview", getCommandLineByLine().toString())
+        //Getting Input Command
+        val inputCommand = intent.getStringExtra("command")
 
-        val s = intent.getStringExtra("command")
+        //Retrieving Main Blocks of Command using Regex
+        val mainBlocksOfCommand = CmdUtils().regexMainBlock(inputCommand)
 
-        val pattern1 = "<" //first pattern left side
-        val pattern2 = ">" //second pattern right side
-//        val text = "sdfjsdkhfkjsdf <text=Something> \n <textSize=24> \n sdf sdkjfhsdkf"
+        //Looping through each Main Block
+        mainBlocksOfCommand.forEach { mainBlock -> processMainBlock(mainBlock) }
+    }
 
-        //todo -> Pattern.DOTALL below is essential to make this Regex work for MULTILINE!
-        val p = Pattern.compile(Pattern.quote(pattern1) + "(.*?)" + Pattern.quote(pattern2), Pattern.DOTALL)
+    /* Processing Each Main Block */
+    @SuppressLint("DefaultLocale")
+    private fun processMainBlock(mainBlock: String) {
+        //Splitting Each Main Block in Lines
+        val propertyValueList = mainBlock.lines()
 
-        val m = p.matcher(s)
-        while (m.find()) {
-            Log.d("REGEX2", m.group(1))
+        //Getting the type -> It is always the first line in Main Block
+        //Substring from start to ':' //Example -> 'Label:' returns 'Label'
+        val type = propertyValueList[0].substring(0, propertyValueList[0].indexOf(":"))
+
+        //Making it Lowercase so that one condition only needed //Eg. for Label, only 'label' check is needed then
+        when (type.toLowerCase()) {
+            "label" -> {
+                var text = "" //Will store Text value for Label
+                var textSize = 0f //Will store Text Size value for Label
+
+                //Looping through All Property-Value pairs
+                for (x in 1 until propertyValueList.size) {
+                    //Getting a Specific Property-Value Pair
+                    val specificPropertyValue = propertyValueList[x].trim()
+                    //Splitting it -> [0] is Property Name and [1] is Value
+                    val propertyValueSplitted = specificPropertyValue.split("=")
+
+                    //Checking Which Property It Is
+                    when(propertyValueSplitted[0].toLowerCase()) { //Checking Property Name by [0] -> Value is stored at [1]
+                        "text" -> text = propertyValueSplitted[1]
+                        "textsize" -> textSize = propertyValueSplitted[1].toFloat()
+                    }
+                    //Logs All The Property-Value Pairs
+                    Log.d("testx -> details", propertyValueSplitted.toString())
+                }
+
+                //Create Label with Assigned Values Above
+                createLabel(text, textSize)
+            }
         }
     }
 
-        /* Handles Processing of Command */
-    private fun processCommand() {
-            val s = intent.getStringExtra("command")
-            Log.d("fullcommand->before", s)
+    private fun createLabel(textInput: String, textSizeInput: Float) {
+        //Existing Relative Layout
+        val root: RelativeLayout = findViewById(R.id.preview_root_layout)
 
-//            s = s.substring(s.indexOf("(") + 1)
-//            s = s.substring(0, s.indexOf(")"))
-
-//            val result = s.substringAfter("(").substringBefore(')')
-
-//            val start = "["
-//            val end = "]"
-//            val pattern = Pattern.compile("$start([^>]*)$end")
-//
-//            val myString =
-//                "What is <Mytag a exp 5 exp 3> written as a single power of <i>a</i> <Mytag yx4> and the double power of <b>x+y</b> <Mytag 3xy4>"
-//            val matcher = pattern.matcher(s)
-//
-//            while (matcher.find()) {
-//                Log.d("fullcommand->after", matcher.group(1))
-//            }
+        //Create New TextView
+        val tv = TextView(this).apply {
+            text = textInput
+            textSize = textSizeInput
+            gravity = Gravity.CENTER
+            typeface = Utils(applicationContext).typefaces[Utils.TYPEFACE_LIGHT]
         }
-//        getCommandLineByLine().forEach { //Working with Each Line of Command
-//            //Trimming Line by Line
-////            val trimmedCommand= it.trim()
-//
-////            command.checkIfNewCommand(trimmedCommand)
-//
-////            //Passing the trimmed one now
-////            val propertyValueSplit = trimmedCommand.split(PROPERTY_VALUE_DELIMITER) //format -> property=something
-////            //Checking Which Property and Passing Values to their Respective Functions
-////            when (propertyValueSplit[PROPERTY]) {
-//////                "text" -> processTextProperty(propertyValueSplit[VALUE])
-//////                "textSize" -> processTextSizeProperty(propertyValueSplit[VALUE])
-//////                "fontWeight" -> processFontWeightProperty(propertyValueSplit[VALUE])
-//////                "dimension" -> processDimensionProperty(propertyValueSplit[VALUE])
-//////                "position" -> processPositionProperty(propertyValueSplit[VALUE])
-////            }
-//        }
+
+        //Makes Width and Height Wrap Content
+        val params = RelativeLayout.LayoutParams(RelativeLayout
+            .LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT)
+
+        //Adding the Newly Created TextView
+        root.addView(tv, params)
+    }
 
 
-    /* Getting Command Line-By-Line through Intent and Applying lines() function */
-    private fun getCommandLineByLine() = intent.getStringExtra("command").lines()
-//    private fun processTextProperty(value: String) { preview_dummy_txtview.text = value }
-//    private fun processTextSizeProperty(value: String) { preview_dummy_txtview.textSize = value.toFloat() }
-//    private fun processFontWeightProperty(value: String) {
-//        when (value) {
-//            "Thin", "thin" -> preview_dummy_txtview.typeface = Utils(this).typefaces[Utils.TYPEFACE_THIN]
-//            "Light", "light" -> preview_dummy_txtview.typeface = Utils(this).typefaces[Utils.TYPEFACE_LIGHT]
-//            "Medium", "medium" -> preview_dummy_txtview.typeface = Utils(this).typefaces[Utils.TYPEFACE_MEDIUM]
-//            "Bold", "bold" -> preview_dummy_txtview.typeface = Utils(this).typefaces[Utils.TYPEFACE_BOLD]
-//        }
-//    }
+
+
+
+
+
+
+
+
+
+
+
 //    private fun processDimensionProperty(value: String) {
 //        val widthHeightSplit = value.split(",")
 //

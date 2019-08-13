@@ -7,9 +7,9 @@
     tools:context="com.app.mmse_draganddrop.command.CommandPreviewActivity">
 
     <TextView
+        android:visibility="gone"
         android:textColor="@android:color/white"
         android:background="@color/colorRandomBlue"
-        android:visibility="visible"
         android:id="@+id/preview_dummy_txtview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

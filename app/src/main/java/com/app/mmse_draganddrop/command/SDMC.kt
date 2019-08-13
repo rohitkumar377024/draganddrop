@@ -7,7 +7,7 @@ class SDMC {
 //        val root: RelativeLayout = findViewById(R.id.preview_root_layout)
 //
 //        val tv = TextView(this).apply {
-//            text = intent.getStringExtra("command") //"Command Screen"
+//            text = intent.getStringExtra("command") //"CmdUtils Screen"
 //            textSize = 42f
 //            gravity = Gravity.CENTER
 //            typeface = typefaces[Utils.TYPEFACE_LIGHT]
@@ -15,7 +15,7 @@ class SDMC {
     //        val params = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT)
     //todo -> not adding currently to make it invisible
 //        root.addView(tv, params)
-
+//todo--------------------------------------used till here------------------------------------------
 
 
 //    private fun getPosition(parentViewGroup: ViewGroup, childView: View) {

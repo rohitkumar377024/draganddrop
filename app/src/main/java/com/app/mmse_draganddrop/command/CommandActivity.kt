@@ -3,11 +3,9 @@ package com.app.mmse_draganddrop.command
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import com.app.draganddrop.R
 import kotlinx.android.synthetic.main.activity_command.*
 import android.view.*
-import com.app.mmse_draganddrop.timeline.TimelineActivity
 
 class CommandActivity : AppCompatActivity() {
 
@@ -33,11 +31,11 @@ class CommandActivity : AppCompatActivity() {
     //Starting Preview Screen [Also passing command to it]
     private fun startPreview() {
         val previewIntent = Intent(this, CommandPreviewActivity::class.java)
-        previewIntent.putExtra("command", getCommandAtOnce())
+        previewIntent.putExtra("command", getInputCommandAtOnce())
         startActivity(previewIntent)
     }
 
-    /*Getting Command Input */
-    private fun getCommandAtOnce() = command_activity_input_edittext.text.toString()
+    /*Getting CmdUtils Input */
+    private fun getInputCommandAtOnce() = command_activity_input_edittext.text.toString()
 
 }
