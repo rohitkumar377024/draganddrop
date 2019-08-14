@@ -83,10 +83,7 @@ class PlayAudioFile : RelativeLayout {
     }
 
     private fun initDraggability() = play_audio_file_super_main_ll.setOnTouchListener(
-        PlayAudioFileTouchListener(
-            this,
-            play_audio_file_super_main_ll
-        )
+        PlayAudioFileTouchListener(this, play_audio_file_super_main_ll)
     )
 
     //Handle results for Selecting Audio Clip
@@ -131,12 +128,8 @@ class PlayAudioFile : RelativeLayout {
 //    }
 
     //Title Text State Handling Functions Below
-    private fun defaultTitleText() { play_audio_file_title_txtview.text =
-        defaultText
-    }
-    private fun doneTitleText() { play_audio_file_title_txtview.text =
-        doneText
-    }
+    private fun defaultTitleText() { play_audio_file_title_txtview.text = defaultText }
+    private fun doneTitleText() { play_audio_file_title_txtview.text = doneText }
 
     private fun checkPermissions() { //Requesting Permission RECORD_AUDIO /* first priority */
         Permissions.check(context, Manifest.permission.RECORD_AUDIO, null, object : PermissionHandler() {

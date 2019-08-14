@@ -100,7 +100,7 @@ class PlayAudioFileTouchListener @JvmOverloads constructor(
     @SuppressLint("ClickableViewAccessibility")
     override fun onTouch(v: View, event: MotionEvent): Boolean {
         if (isDragging) {
-            val bounds = FloatArray(4)
+            val bounds = FloatArray(4) 
             // LEFT
             bounds[0] = event.rawX + dX
             if (bounds[0] < maxLeft) {

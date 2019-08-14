@@ -2,7 +2,9 @@
   <dictionary name="rohit">
     <words>
       <w>dotall</w>
+      <w>fontweight</w>
       <w>splitted</w>
+      <w>textsize</w>
     </words>
   </dictionary>
 </component>

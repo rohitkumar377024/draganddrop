@@ -23,19 +23,19 @@ class CommandActivity : AppCompatActivity() {
     //Handling Menu Item Clicks
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item?.itemId) {
-            R.id.menu_command_go_to_preview -> { startPreview() }
+            R.id.menu_command_go_to_preview -> { startCommandPreviewScreen() }
         }
         return super.onOptionsItemSelected(item)
     }
 
     //Starting Preview Screen [Also passing command to it]
-    private fun startPreview() {
+    private fun startCommandPreviewScreen() {
         val previewIntent = Intent(this, CommandPreviewActivity::class.java)
         previewIntent.putExtra("command", getInputCommandAtOnce())
         startActivity(previewIntent)
     }
 
-    /*Getting CmdUtils Input */
+    /*Getting Whole Command Input At Once */
     private fun getInputCommandAtOnce() = command_activity_input_edittext.text.toString()
 
 }
