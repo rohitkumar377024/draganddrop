@@ -23,7 +23,7 @@ class CmdUtils(private val ctx: Context) {
 
         //Compiling the pattern -> Pattern.DOTALL Flag makes sure this pattern works on MULTI-LINE
         val p = Pattern.compile(Pattern.quote(patternLeft)
-                + "(.*?)" + Pattern.quote(patternRight), Pattern.DOTALL)
+                    + "(.*?)" + Pattern.quote(patternRight), Pattern.DOTALL)
 
         //Finding All Matches and Adding Them to ArrayList
         val m = p.matcher(inputCommand)
@@ -89,9 +89,7 @@ class CmdUtils(private val ctx: Context) {
                             }
                         }
                     }
-
                 }
-
                 //Create Label with Assigned Values Above
                 createLabel(root, text, textSize, fontWeight, positionTop, positionLeft, dimensionWidth, dimensionHeight)
             }
@@ -118,6 +116,7 @@ class CmdUtils(private val ctx: Context) {
             setBackgroundColor(ContextCompat.getColor(ctx, R.color.colorRandomBlue)) //todo -> remove later
         }
 
+        //Creating LayoutParams As Per Assigned Width, Height, Top and Left
         val params = RelativeLayout.LayoutParams(Utils(ctx).dpToPx(widthInput), Utils(ctx).dpToPx(heightInput))
         params.topMargin = Utils(ctx).dpToPx(topInput)
         params.leftMargin = Utils(ctx).dpToPx(leftInput)

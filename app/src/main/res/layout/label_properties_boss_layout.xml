@@ -61,7 +61,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="6"
             android:gravity="center"
-            android:hint="Sample Text"
+            android:hint="Sample Label"
             android:textColor="@android:color/white"
             android:textColorHint="#5BFFFFFF" />
 
