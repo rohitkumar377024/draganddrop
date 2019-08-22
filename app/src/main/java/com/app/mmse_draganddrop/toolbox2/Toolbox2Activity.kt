@@ -6,38 +6,39 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.view.ViewTreeObserver
 import kotlinx.android.synthetic.main.activity_toolbox2.*
 import com.app.draganddrop.R
+import com.app.mmse_draganddrop.Utils
 import com.app.mmse_draganddrop.command.CommandActivity
+import com.app.mmse_draganddrop.command.PositionDimensionCalculator
 import com.app.mmse_draganddrop.demo.label.LabelListItem
 import com.app.mmse_draganddrop.timeline.TimelineActivity
 
 class Toolbox2Activity : AppCompatActivity() {
 
-    //todo -> tracks the CustomViews being added to the DragAndDropContainer
-    private val itemsList = arrayListOf<String>()
-
-    private val customViewList = arrayListOf<Any>()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_toolbox2)
 
-        tool_box_label.setOnClickListener { //Label
-            drag_and_drop_container.addLabelOriginal() 
+        toolbox_master_constraint_layout.viewTreeObserver.addOnGlobalLayoutListener { calculateToolboxDimensions() } //Toolbox Dimensions
 
-            addItemToList(LabelListItem().text)
+        tool_box_label.setOnClickListener { //Label
+            drag_and_drop_container.addLabelOriginal()
         }
 
         tool_box_play_audio_file.setOnClickListener { //Play Audio
             drag_and_drop_container.addPlayAudioFileOriginal()
-
-            addItemToList("Play Audio File added!")
         }
+    }
 
-        toolbox_done_dummy_btn.setOnClickListener { //saveLayout() todo -> commented
-            showItemsList()
-        }
+    /* Calculating the Dimensions of Toolbox in Dp */
+    private fun calculateToolboxDimensions() {
+        val toolboxDimensions = PositionDimensionCalculator(this).getDimensions(toolbox_scrollview_main)
+        val toolboxWidth = toolboxDimensions.first
+        val toolboxHeight = toolboxDimensions.second
+
+        Log.d("toolbox3", "width -> $toolboxWidth, height -> $toolboxHeight")
     }
 
     //Creating Menu to Go To CmdUtils Activity
@@ -60,31 +61,6 @@ class Toolbox2Activity : AppCompatActivity() {
         val timelineIntent = Intent(this, TimelineActivity::class.java)
         startActivity(timelineIntent)
     }
-
-    private fun addItemToList(item: String) = itemsList.add(item)
-    private fun showItemsList() {
-//        for (x in itemsList) {
-//            Log.d("DDC-13", "Item: $x")
-//        }
-        itemsList.forEach { Log.d("DDC-13", "Item: $it") }
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     //Handling Activity Results for Select Audio Clip --> 'Play Audio File' Tool
     //Why we are handling here? -> Because it requires an Activity to start for result
@@ -109,23 +85,6 @@ class Toolbox2Activity : AppCompatActivity() {
 //                }
 //            }
 //        }
-//    }
-
-//    private fun saveLayout() {
-//        Toast.makeText(applicationContext, "Saving Layout, just a minute", Toast.LENGTH_SHORT).show()
-//
-//        //Getting top-bottom-right-left coordinates of the view
-//        val px = CoordinateUtils().getCoordinatesInPx(textview_save_test_1)
-//        val dp = CoordinateUtils().getCoordinatesInDp(textview_save_test_1)
-//
-//        val intent = Intent(this, ToolboxSavedResultActivity::class.java)
-//        intent.putExtra("px_width", px.width())
-//        intent.putExtra("px_height", px.height())
-//        intent.putExtra("px_top", px.top)
-//        intent.putExtra("px_bottom", px.bottom)
-//        intent.putExtra("px_left", px.left)
-//        intent.putExtra("px_right", px.right)
-//        startActivity(intent)
 //    }
 
 }

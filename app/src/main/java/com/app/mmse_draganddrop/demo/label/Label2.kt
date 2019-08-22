@@ -11,7 +11,7 @@ import androidx.core.content.ContextCompat
 import com.app.draganddrop.R
 import com.app.mmse_draganddrop.Utils
 import com.app.mmse_draganddrop.command.LabelCmd
-import com.app.mmse_draganddrop.command.SDMC
+import com.app.mmse_draganddrop.command.PositionDimensionCalculator
 import kotlinx.android.synthetic.main.frame_property_layout.view.*
 import kotlinx.android.synthetic.main.label_layout.view.*
 import kotlinx.android.synthetic.main.label_properties_boss_layout.view.*
@@ -71,11 +71,10 @@ class Label2 : RelativeLayout {
         label_change_text_main_btn.setOnClickListener { changeTextDone() }
         label_text_change_done_btn.setOnClickListener { handleChangedText(it) }
 
-        //todo -> currently hijacking close button //todo -> currently hijacking close button
-        //Clicking on close button hides Properties Pane //todo -> currently hijacking close button
-        label_properties_close_btn.setOnClickListener {//todo -> currently hijacking close button
-            //handleCloseBtn(it)
-            getState()
+        //Clicking on close button hides Properties Pane
+        label_properties_close_btn.setOnClickListener {
+            handleCloseBtn(it)
+//            getState()
         }
 
         //todo -> Handling OnClick and Frame
@@ -87,21 +86,27 @@ class Label2 : RelativeLayout {
     }
 
     //todo -> handling state here currently
-    private fun getState() {
+    fun getState(): LabelCmd {
+        val dimensions = PositionDimensionCalculator(context).getDimensions(label_sample_textview)
+        val position = PositionDimensionCalculator(context).getPosition2(label_sample_textview)
 
-//        val labelWidth = TODO()
-//        val labelHeight = TODO()
-//        val labelTop = TODO()
-//        val labelLeft = TODO()
+        val text = label_sample_textview.text.toString()
+        val textSize = label_text_size_edittext.text.toString().toFloat()
+        val fontWeight = fontWeightVar
 
-        SDMC(context).getPosition(label_main_ll, label_sample_textview)
+        val width = dimensions.first
+        val height = dimensions.second
+        val top = position.first
+        val left = position.second
 
         //Taking TextSize EditText Value as Second Parameter for getting right Text Size value
-        val state = LabelCmd(label_sample_textview.text.toString(), label_text_size_edittext.text.toString().toFloat(), fontWeightVar)
+        val state = LabelCmd(text, textSize, fontWeight, width, height, top, left)
         Log.d("state-check", state.toString())
+
+        return state
     }
 
-    //todo -> disabled currently
+    //Handles Close Button
     private fun handleCloseBtn(it: View) {
         hidePropertiesPane()
         Utils(context).hideSoftKeyboard(context, it)
@@ -112,7 +117,7 @@ class Label2 : RelativeLayout {
         label_font_weight_thin.setOnClickListener { fontWeightHelper(it, Utils.TYPEFACE_THIN); fontWeightVar = "thin" }
         label_font_weight_light.setOnClickListener { fontWeightHelper(it, Utils.TYPEFACE_LIGHT); fontWeightVar = "light" }
         label_font_weight_medium.setOnClickListener { fontWeightHelper(it, Utils.TYPEFACE_MEDIUM); fontWeightVar = "medium" }
-        label_font_weight_bold.setOnClickListener { fontWeightHelper(it, Utils.TYPEFACE_BOLD); fontWeightVar = "bold" }
+         label_font_weight_bold.setOnClickListener { fontWeightHelper(it, Utils.TYPEFACE_BOLD); fontWeightVar = "bold" }
     }
 
     //Helps in Font Weight Stuff
@@ -150,7 +155,7 @@ class Label2 : RelativeLayout {
     private fun textSizeInitialValue() {
         //Initial values for EditText and Text Size of Label
         val initial = floor((((TEXT_SIZE_MAX - TEXT_SIZE_MIN) / 3) - 1).toDouble())
-        label_text_size_edittext.setText("$initial")
+         label_text_size_edittext.setText("$initial")
         label_sample_textview.textSize =  initial.toFloat()
     }
 
@@ -169,7 +174,7 @@ class Label2 : RelativeLayout {
         })
     }
 
-    //Handles state when Text Size Change is done
+    //Handles state when Text Size Change is Done
     private fun textSizeDone(it: View) {
         label_text_size_seekbar.progress = label_text_size_edittext.text.toString().toInt() - TEXT_SIZE_MIN
         Utils(context).hideSoftKeyboard(it.context, it)

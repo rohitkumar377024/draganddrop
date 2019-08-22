@@ -3,6 +3,7 @@ package com.app.mmse_draganddrop.demo
 import android.annotation.SuppressLint
 import android.content.Context
 import android.util.AttributeSet
+import android.util.Log
 import android.widget.*
 import com.app.draganddrop.R
 import com.app.mmse_draganddrop.demo.label.Label2
@@ -17,10 +18,13 @@ class DragAndDropContainer: RelativeLayout {
     @SuppressLint("ClickableViewAccessibility")
     private fun setupContainer() {
         inflate(context, R.layout.drag_and_drop_container, this)
-
-        //textview_save_test_1.text = Label2(context).getState()
     }
 
-    fun addLabelOriginal() = addView(Label2(context))
+    fun addLabelOriginal() {
+        val l = Label2(context)
+        val x = l.getState()
+        Log.d("xyz", x.toString())
+        addView(l)
+    }
     fun addPlayAudioFileOriginal() = addView(PlayAudioFile(context))
 }

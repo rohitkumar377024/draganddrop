@@ -69,7 +69,6 @@ class LabelTouchListener @JvmOverloads constructor(
         isInitialized = false
     }
 
-    //todo -> was private
     private fun updateBounds() {
         updateViewBounds()
         updateParentBounds()

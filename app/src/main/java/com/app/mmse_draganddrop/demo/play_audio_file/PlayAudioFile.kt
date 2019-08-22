@@ -59,8 +59,7 @@ class PlayAudioFile : RelativeLayout {
 
         Utils(context).disable(play_audio_file_experiment_play_toggle_btn) //Disabling Play Toggle Btn At Start
 
-        play_audio_file_title_txtview.text =
-            defaultText //Sets default text to title textview in the start
+        play_audio_file_title_txtview.text = defaultText //Sets default text to title textview in the start
 
         //todo - clean this code for close button
         hidePropertiesPane() //todo - hide properties pane initially
@@ -133,7 +132,8 @@ class PlayAudioFile : RelativeLayout {
 
     private fun checkPermissions() { //Requesting Permission RECORD_AUDIO /* first priority */
         Permissions.check(context, Manifest.permission.RECORD_AUDIO, null, object : PermissionHandler() {
-            override fun onGranted() {/* no need to even show a toast here */ } }) }
+            override fun onGranted() {/* no need to even show a toast here */ } })
+    }
 
     private fun initVisibility() { /* Visibility States at Start */
         Utils(context).hide(play_audio_file_bottom_ll)   //Initially Bottom LL ->> Visibility GONE
