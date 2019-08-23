@@ -85,23 +85,41 @@ class Label2 : RelativeLayout {
         frame_property_select_btn.setOnClickListener { Utils(context).toast("Frame -> Clicked") }
     }
 
-    //todo -> handling state here currently
+    //todo -> now returning state of LabelCmd Type from here
     fun getState(): LabelCmd {
-        val dimensions = PositionDimensionCalculator(context).getDimensions(label_sample_textview)
-        val position = PositionDimensionCalculator(context).getPosition2(label_sample_textview)
 
-        val text = label_sample_textview.text.toString()
-        val textSize = label_text_size_edittext.text.toString().toFloat()
-        val fontWeight = fontWeightVar
+        lateinit var dimensions: Pair<Int, Int>
+        lateinit var position: Pair<Int, Int>
 
-        val width = dimensions.first
-        val height = dimensions.second
-        val top = position.first
-        val left = position.second
+        var text: String
+        var textSize: Float
+        var fontWeight: String
 
-        //Taking TextSize EditText Value as Second Parameter for getting right Text Size value
-        val state = LabelCmd(text, textSize, fontWeight, width, height, top, left)
-        Log.d("state-check", state.toString())
+        var width: Int
+        var height: Int
+        var top: Int
+        var left: Int
+
+        lateinit var state: LabelCmd
+
+        //Avoids 0 value -> Allows rendering to happen before
+        label_sample_textview.viewTreeObserver.addOnGlobalLayoutListener {
+            dimensions = PositionDimensionCalculator(context).getDimensions(label_sample_textview)
+            position = PositionDimensionCalculator(context).getPosition2(label_sample_textview)
+
+            text = label_sample_textview.text.toString()
+            textSize = label_text_size_edittext.text.toString().toFloat()
+            fontWeight = fontWeightVar
+
+            width = dimensions.first
+            height = dimensions.second
+            top = position.first
+            left = position.second
+
+            //Taking TextSize EditText Value as Second Parameter for getting right Text Size value
+            state = LabelCmd(text, textSize, fontWeight, width, height, top, left)
+            Log.d("state-check", state.toString())
+        }
 
         return state
     }

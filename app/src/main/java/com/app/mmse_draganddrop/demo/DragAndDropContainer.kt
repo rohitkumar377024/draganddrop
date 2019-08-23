@@ -20,6 +20,7 @@ class DragAndDropContainer: RelativeLayout {
         inflate(context, R.layout.drag_and_drop_container, this)
     }
 
+    //todo -> modifying here to handle state
     fun addLabelOriginal() {
         val l = Label2(context)
         val x = l.getState()
