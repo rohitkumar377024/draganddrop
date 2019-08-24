@@ -23,8 +23,8 @@ class DragAndDropContainer: RelativeLayout {
     //todo -> modifying here to handle state
     fun addLabelOriginal() {
         val l = Label2(context)
-        val x = l.getState()
-        Log.d("xyz", x.toString())
+        val x = l.getState() //todo -> getstate disabled currently
+        Log.d("xyz", "$x")
         addView(l)
     }
     fun addPlayAudioFileOriginal() = addView(PlayAudioFile(context))

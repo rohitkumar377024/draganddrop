@@ -11,11 +11,15 @@ import kotlinx.android.synthetic.main.activity_toolbox2.*
 import com.app.draganddrop.R
 import com.app.mmse_draganddrop.Utils
 import com.app.mmse_draganddrop.command.CommandActivity
+import com.app.mmse_draganddrop.command.LabelCmd
 import com.app.mmse_draganddrop.command.PositionDimensionCalculator
 import com.app.mmse_draganddrop.demo.label.LabelListItem
 import com.app.mmse_draganddrop.timeline.TimelineActivity
 
 class Toolbox2Activity : AppCompatActivity() {
+
+    //Stores the current frame state
+    var frameState = arrayListOf<Any>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,10 +29,13 @@ class Toolbox2Activity : AppCompatActivity() {
 
         tool_box_label.setOnClickListener { //Label
             drag_and_drop_container.addLabelOriginal()
+            val labelCmd1 = LabelCmd("Label 1", 32f, "thin", 200, 200, 16, 16)
+            frameState.add(labelCmd1)
         }
 
-        tool_box_play_audio_file.setOnClickListener { //Play Audio
+        tool_box_play_audio_file.setOnClickListener { //Play Audio //todo -> currently treating as done button to retrieve state
             drag_and_drop_container.addPlayAudioFileOriginal()
+            Log.d("frameState", "$frameState")
         }
     }
 

@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.RelativeLayout
 import android.widget.SeekBar
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.app.draganddrop.R
 import com.app.mmse_draganddrop.Utils
@@ -88,40 +89,45 @@ class Label2 : RelativeLayout {
     //todo -> now returning state of LabelCmd Type from here
     fun getState(): LabelCmd {
 
+        val text: String = label_sample_textview.text.toString()
+        val textSize: Float = label_text_size_edittext.text.toString().toFloat()
+        val fontWeight: String = fontWeightVar
+
         lateinit var dimensions: Pair<Int, Int>
         lateinit var position: Pair<Int, Int>
 
-        var text: String
-        var textSize: Float
-        var fontWeight: String
+        var width2: Int = 12
+        var height2: Int = 12
+        var top2: Int = 12
+        var left2: Int= 12
 
-        var width: Int
-        var height: Int
-        var top: Int
-        var left: Int
-
-        lateinit var state: LabelCmd
-
-        //Avoids 0 value -> Allows rendering to happen before
         label_sample_textview.viewTreeObserver.addOnGlobalLayoutListener {
             dimensions = PositionDimensionCalculator(context).getDimensions(label_sample_textview)
             position = PositionDimensionCalculator(context).getPosition2(label_sample_textview)
 
-            text = label_sample_textview.text.toString()
-            textSize = label_text_size_edittext.text.toString().toFloat()
-            fontWeight = fontWeightVar
+            width2 = dimensions.first
+            height2 = dimensions.second
+            top2 = position.first
+            left2 = position.second
 
-            width = dimensions.first
-            height = dimensions.second
-            top = position.first
-            left = position.second
+//            Log.d("xyz", "viewtreecheck")
+//            Toast.makeText(context, "Wew", Toast.LENGTH_SHORT).show()
+//
+//            Log.d("xyz->dimen", "$dimensions")
+//            Log.d("xyz->pos", "$position")
 
-            //Taking TextSize EditText Value as Second Parameter for getting right Text Size value
-            state = LabelCmd(text, textSize, fontWeight, width, height, top, left)
-            Log.d("state-check", state.toString())
+            Log.d("xyz->width", "$width2")
+            Log.d("xyz->height", "$height2")
+            Log.d("xyz->top", "$top2")
+            Log.d("xyz->left", "$left2")
         }
 
-        return state
+        Log.d("xyz->width-o", "$width2")
+        Log.d("xyz->height-o", "$height2")
+        Log.d("xyz->top-o", "$top2")
+        Log.d("xyz->left-o", "$left2")
+
+        return LabelCmd(text, textSize, fontWeight, width, height, top, left)
     }
 
     //Handles Close Button
