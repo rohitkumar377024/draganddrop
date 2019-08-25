@@ -6,14 +6,11 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.view.ViewTreeObserver
 import kotlinx.android.synthetic.main.activity_toolbox2.*
 import com.app.draganddrop.R
-import com.app.mmse_draganddrop.Utils
 import com.app.mmse_draganddrop.command.CommandActivity
 import com.app.mmse_draganddrop.command.LabelCmd
 import com.app.mmse_draganddrop.command.PositionDimensionCalculator
-import com.app.mmse_draganddrop.demo.label.LabelListItem
 import com.app.mmse_draganddrop.timeline.TimelineActivity
 
 class Toolbox2Activity : AppCompatActivity() {

@@ -53,9 +53,9 @@ class LabelTouchListener @JvmOverloads constructor(
     }
 
     //todo -> handling click here in a separate function for clarity and separation of code
-    private fun click() {
+    private fun click(view: View) {
         //Showing the Properties Pane
-        label2.showPropertiesPane()
+        LabelUtils(view.context).showPropertiesPane(Label2.propertiesPaneShowArr)
     }
 
     private fun setOnDragActionListener(onDragActionListener: OnDragActionListener?) {
@@ -127,7 +127,7 @@ class LabelTouchListener @JvmOverloads constructor(
                         //TODO onClick code
                         Log.d("workx", "clicked")
 
-                        click()
+                        click(v)
 
 //                        callback.customClick(v.context, v) //todo -> CALLBACK HERE
                     }
