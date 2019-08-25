@@ -11,7 +11,7 @@ import com.app.mmse_draganddrop.Utils
 class PositionDimensionCalculator(private val ctx: Context) {
 
     /* Returns Position in Dp */
-    fun getPosition2(myView: View): Pair<Int, Int> {
+    fun getPosition(myView: View): Pair<Int, Int> {
         val myViewRect = Rect()
         myView.getGlobalVisibleRect(myViewRect)
         val top = Utils(ctx).pxToDp(myViewRect.top)

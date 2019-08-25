@@ -10,6 +10,19 @@ import kotlin.math.floor
 
 class LabelUtils(private val ctx: Context) {
 
+    companion object {
+        //Text Size SeekBar Values
+        const val TEXT_SIZE_STEP = 1
+        const val TEXT_SIZE_MIN = 2
+        const val TEXT_SIZE_MAX = 96
+    }
+
+    //Handles Close Button
+    fun handleCloseBtn(it: View) {
+        hidePropertiesPane(Label2.propertiesPaneHideArr)
+        Utils(ctx).hideSoftKeyboard(ctx, it)
+    }
+
     //Helps in Font Weight Stuff
     fun fontWeightHelper(it: View, typeface: Int, sampleTextView: TextView, fontWeightBtns: ArrayList<Button>) {
         sampleTextView.typeface = Utils(ctx).typefaces[typeface]
@@ -44,27 +57,27 @@ class LabelUtils(private val ctx: Context) {
     //Text Size Value At Start
     fun textSizeInitialValue(textSizeEditText: EditText, sampleTextView: TextView) {
         //Initial values for EditText and Text Size of Label
-        val initial = floor((((Label2.TEXT_SIZE_MAX - Label2.TEXT_SIZE_MIN) / 3) - 1).toDouble())
+        val initial = floor((((TEXT_SIZE_MAX - TEXT_SIZE_MIN) / 3) - 1).toDouble())
         textSizeEditText.setText("$initial")
         sampleTextView.textSize =  initial.toFloat()
     }
 
     //Handles state when Text Size Change is Done
     fun textSizeDone(it: View, textSizeSeekbar: SeekBar, textSizeEditText: EditText, seekbarLL: LinearLayout) {
-        textSizeSeekbar.progress = textSizeEditText.text.toString().toInt() - Label2.TEXT_SIZE_MIN
+        textSizeSeekbar.progress = textSizeEditText.text.toString().toInt() - TEXT_SIZE_MIN
         Utils(ctx).hideSoftKeyboard(it.context, it)
         Utils(ctx).hide(seekbarLL)
     }
 
     //Makes the SeekBar Work for Text Size Change
     fun configureTextSizeChangeSeekBar(textSizeSeekbar: SeekBar, sampleTextView: TextView, textSizeEditText: EditText) {
-        textSizeSeekbar.max = (Label2.TEXT_SIZE_MAX - Label2.TEXT_SIZE_MIN) / Label2.TEXT_SIZE_STEP
-        textSizeSeekbar.progress = floor((((Label2.TEXT_SIZE_MAX - Label2.TEXT_SIZE_MIN) / 3) - 1).toDouble()).toInt()
+        textSizeSeekbar.max = (TEXT_SIZE_MAX - TEXT_SIZE_MIN) / TEXT_SIZE_STEP
+        textSizeSeekbar.progress = floor((((TEXT_SIZE_MAX - TEXT_SIZE_MIN) / 3) - 1).toDouble()).toInt()
         textSizeSeekbar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onStartTrackingTouch(seekBar: SeekBar?) {}
             override fun onStopTrackingTouch(seekBar: SeekBar?) {}
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-                val value = Label2.TEXT_SIZE_MIN + progress * Label2.TEXT_SIZE_STEP
+                val value = TEXT_SIZE_MIN + progress * TEXT_SIZE_STEP
                 sampleTextView.textSize = value.toFloat()
                 textSizeEditText.setText(value.toString())
             }
