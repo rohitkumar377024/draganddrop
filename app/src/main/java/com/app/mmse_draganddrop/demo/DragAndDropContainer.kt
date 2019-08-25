@@ -2,6 +2,7 @@ package com.app.mmse_draganddrop.demo
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.os.Handler
 import android.util.AttributeSet
 import android.util.Log
 import android.widget.*
@@ -23,9 +24,17 @@ class DragAndDropContainer: RelativeLayout {
     //todo -> modifying here to handle state
     fun addLabelOriginal() {
         val l = Label2(context)
-        val x = l.getState() //todo -> getstate disabled currently
-        Log.d("xyz->recieved", "$x")
         addView(l)
+
+        val x = l.getState()
+        Log.d("xyz->recieved", "$x")
+
+        Handler().postDelayed({
+            val y = l.getState()
+            Log.d("xyz->recieved", "$y")
+        }, 1500)
+
     }
+
     fun addPlayAudioFileOriginal() = addView(PlayAudioFile(context))
 }

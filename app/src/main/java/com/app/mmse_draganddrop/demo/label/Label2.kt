@@ -99,31 +99,86 @@ class Label2 : RelativeLayout {
         textSize = label_text_size_edittext.text.toString().toFloat()
         fontWeight = fontWeightVar
 
-        val vto = label_sample_textview.viewTreeObserver
-        vto.addOnGlobalLayoutListener(object : OnGlobalLayoutListener {
-            override fun onGlobalLayout() {
-                dimensions = PositionDimensionCalculator(context).getDimensions(label_sample_textview)
-                position = PositionDimensionCalculator(context).getPosition2(label_sample_textview)
+//        val vto = label_sample_textview.viewTreeObserver
+//        vto.addOnGlobalLayoutListener(object : OnGlobalLayoutListener {
+//            override fun onGlobalLayout() {
+//                dimensions = PositionDimensionCalculator(context).getDimensions(label_sample_textview)
+//                position = PositionDimensionCalculator(context).getPosition2(label_sample_textview)
+//
+//                width2 = dimensions.first
+//                height2 = dimensions.second
+//                top2 = position.first
+//                left2 = position.second
+//
+//                Log.d("xyz->inside", "width -> $width2, height -> $height2, top -> $top2, left -> $left2")
+//                label_sample_textview.viewTreeObserver.removeOnGlobalLayoutListener(this)
+//            }
+//        })
 
-                width2 = dimensions.first
-                height2 = dimensions.second
-                top2 = position.first
-                left2 = position.second
+//        val vto = label_sample_textview.viewTreeObserver
+//        vto.addOnGlobalLayoutListener(object : OnGlobalLayoutListener {
+//            override fun onGlobalLayout() {
 
-                Log.d("xyz->inside", "width -> $width2, height -> $height2, top -> $top2, left -> $left2")
-                label_sample_textview.viewTreeObserver.removeOnGlobalLayoutListener(this)
-            }
-        })
+//                label_sample_textview.viewTreeObserver.removeOnGlobalLayoutListener(this)
+//            }
+//        })
     }
 
     //todo -> now returning state of LabelCmd Type from here
     fun getState(): LabelCmd {
-        Log.d("xyz->outside", "width -> $width2, height -> $height2, top -> $top2, left -> $left2")
+        //Log.d("xyz->outside", "width -> $width2, height -> $height2, top -> $top2, left -> $left2")
 
-        val x = LabelCmd(text, textSize, fontWeight, width2, height2, top2, left2)
+        val widthHeightTopLeft = getPosDimen()
+        val finalWidth = widthHeightTopLeft[0]
+        val finalHeight = widthHeightTopLeft[1]
+        val finalTop = widthHeightTopLeft[2]
+        val finalLeft = widthHeightTopLeft[3]
+
+        //val x = LabelCmd(text, textSize, fontWeight, width2, height2, top2, left2)
+        val x = LabelCmd(text, textSize, fontWeight, finalWidth, finalHeight, finalTop, finalLeft)
         Log.d("xyz->sent", "$x")
         return x
     }
+
+    fun getPosDimen(): ArrayList<Int> {
+        Handler().postDelayed({
+            dimensions = PositionDimensionCalculator(context).getDimensions(label_sample_textview)
+            position = PositionDimensionCalculator(context).getPosition2(label_sample_textview)
+
+            width2 = dimensions.first
+            height2 = dimensions.second
+            top2 = position.first
+            left2 = position.second
+
+            //Log.d("xyz->inside", "width -> $width2, height -> $height2, top -> $top2, left -> $left2")
+        }, 500)
+
+        return arrayListOf(width2, height2, top2, left2)
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
