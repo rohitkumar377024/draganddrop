@@ -97,7 +97,7 @@ class CmdUtils(private val ctx: Context) {
     }
 
     /* Creates a Label */
-    fun createLabel(root: RelativeLayout /* root -> Existing Relative Layout */,
+    private fun createLabel(root: RelativeLayout /* root -> Existing Relative Layout */,
                     textInput: String, textSizeInput: Float, fontWeight: String,
                     topInput: Int, leftInput: Int, widthInput: Int, heightInput: Int) {
 

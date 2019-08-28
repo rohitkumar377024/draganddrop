@@ -37,6 +37,18 @@ class TimelineActivity : AppCompatActivity() {
         showFrameSelected(view as TextView)
     }
 
+    /* Highlights the frame selected */
+    private fun showFrameSelected(textView: TextView) {
+        textView.typeface = Utils(this).typefaces[Utils.TYPEFACE_MEDIUM]
+    }
+
+    /* Adds the default number of frames */
+    private fun addDefaultFrames() {
+        for (i in 1..FRAMES_DEFAULT) {
+            addFrame(i.toString())
+        }
+    }
+
     /* Logic for Adding a Frame */
     private fun addFrame(message: String) {
         val a = TextView(this).apply {
@@ -48,18 +60,6 @@ class TimelineActivity : AppCompatActivity() {
             setOnClickListener { processFrameClick(message.toInt(), it) }
         }
         timeline_dynamic_ll.addView(a)
-    }
-
-    /* Highlights the frame selected */
-    private fun showFrameSelected(textView: TextView) {
-        textView.typeface = Utils(this).typefaces[Utils.TYPEFACE_MEDIUM]
-    }
-
-    /* Adds the default number of frames */
-    private fun addDefaultFrames() {
-        for (i in 1..FRAMES_DEFAULT) {
-            addFrame(i.toString())
-        }
     }
 
 }

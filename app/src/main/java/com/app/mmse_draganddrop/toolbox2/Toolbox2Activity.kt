@@ -15,25 +15,14 @@ import com.app.mmse_draganddrop.timeline.TimelineActivity
 
 class Toolbox2Activity : AppCompatActivity() {
 
-    //Stores the current frame state
-    var frameState = arrayListOf<Any>()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_toolbox2)
 
         toolbox_master_constraint_layout.viewTreeObserver.addOnGlobalLayoutListener { calculateToolboxDimensions() } //Toolbox Dimensions
 
-        tool_box_label.setOnClickListener { //Label
-            drag_and_drop_container.addLabelOriginal()
-            val labelCmd1 = LabelCmd("Label 1", 32f, "thin", 200, 200, 16, 16)
-            frameState.add(labelCmd1)
-        }
-
-        tool_box_play_audio_file.setOnClickListener { //Play Audio //todo -> currently treating as done button to retrieve state
-            drag_and_drop_container.addPlayAudioFileOriginal()
-            Log.d("frameState", "$frameState")
-        }
+        tool_box_label.setOnClickListener { drag_and_drop_container.addLabelOriginal() } //Label
+        tool_box_play_audio_file.setOnClickListener { drag_and_drop_container.addPlayAudioFileOriginal() } //Play Audio
     }
 
     /* Calculating the Dimensions of Toolbox in Dp */
