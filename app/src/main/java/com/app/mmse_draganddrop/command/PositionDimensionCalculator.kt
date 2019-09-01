@@ -1,12 +1,9 @@
 package com.app.mmse_draganddrop.command
 
 import android.content.Context
-import android.graphics.Point
 import android.graphics.Rect
-import android.util.Log
 import android.view.View
-import android.view.ViewGroup
-import com.app.mmse_draganddrop.Utils
+import com.app.mmse_draganddrop.extras.Utils
 
 class PositionDimensionCalculator(private val ctx: Context) {
 

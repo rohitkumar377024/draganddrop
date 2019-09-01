@@ -7,7 +7,7 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import com.app.draganddrop.R
-import com.app.mmse_draganddrop.Utils
+import com.app.mmse_draganddrop.extras.Utils
 import java.util.regex.Pattern
 
 class CmdUtils(private val ctx: Context) {
@@ -117,7 +117,10 @@ class CmdUtils(private val ctx: Context) {
         }
 
         //Creating LayoutParams As Per Assigned Width, Height, Top and Left
-        val params = RelativeLayout.LayoutParams(Utils(ctx).dpToPx(widthInput), Utils(ctx).dpToPx(heightInput))
+        val params = RelativeLayout.LayoutParams(
+            Utils(ctx).dpToPx(widthInput), Utils(
+                ctx
+            ).dpToPx(heightInput))
         params.topMargin = Utils(ctx).dpToPx(topInput)
         params.leftMargin = Utils(ctx).dpToPx(leftInput)
 

@@ -11,6 +11,7 @@ import com.app.draganddrop.R
 import com.app.mmse_draganddrop.command.CommandActivity
 import com.app.mmse_draganddrop.command.LabelCmd
 import com.app.mmse_draganddrop.command.PositionDimensionCalculator
+import com.app.mmse_draganddrop.extras.Utils
 import com.app.mmse_draganddrop.timeline.TimelineActivity
 
 class Toolbox2Activity : AppCompatActivity() {
@@ -45,6 +46,9 @@ class Toolbox2Activity : AppCompatActivity() {
         when (item?.itemId) {
             R.id.menu_item_go_to_cmd -> startActivity(Intent(this, CommandActivity::class.java))
             R.id.menu_go_to_timeline_screen -> { goToTimelineScreen() }
+            //todo -> starting import/export process from here menu items clicks
+            R.id.menu_item_import -> drag_and_drop_container.import() //Utils(this).longToast("Importing")
+            R.id.menu_item_export -> drag_and_drop_container.export() //Utils(this).longToast("Exporting")
         }
         return super.onOptionsItemSelected(item)
     }

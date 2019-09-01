@@ -5,7 +5,7 @@ import android.view.View
 import android.widget.*
 import androidx.core.content.ContextCompat
 import com.app.draganddrop.R
-import com.app.mmse_draganddrop.Utils
+import com.app.mmse_draganddrop.extras.Utils
 import kotlin.math.floor
 
 class LabelUtils(private val ctx: Context) {

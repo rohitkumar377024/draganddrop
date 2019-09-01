@@ -13,7 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name="com.app.mmse_draganddrop.timeline.TimelineActivity"></activity>
+        <activity android:name="com.app.mmse_draganddrop.ImportScreenActivity"></activity>
+        <activity android:name="com.app.mmse_draganddrop.timeline.TimelineActivity" />
         <activity
             android:name="com.app.mmse_draganddrop.toolbox2.Toolbox2Activity"
             android:screenOrientation="portrait">

@@ -7,7 +7,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.RelativeLayout
 import com.app.draganddrop.R
-import com.app.mmse_draganddrop.Utils
+import com.app.mmse_draganddrop.extras.Utils
 import com.app.mmse_draganddrop.command.LabelCmd
 import com.app.mmse_draganddrop.command.PositionDimensionCalculator
 import kotlinx.android.synthetic.main.frame_property_layout.view.*
@@ -37,7 +37,9 @@ class Label2 : RelativeLayout {
         label_sample_textview.setOnTouchListener(LabelTouchListener(this, label_sample_textview)) //Setting Touch Listener for Text
         label_sample_textview.setOnClickListener { LabelUtils(context).showPropertiesPane(propertiesPaneShowArr) } //Clicking on text shows Properties Pane
         //Showing Text Size Layout after 'Change Text Size' Button Clicked
-        label_change_text_size_main_btn.setOnClickListener { Utils(context).show(label_seekbar_ll) }
+        label_change_text_size_main_btn.setOnClickListener { Utils(
+            context
+        ).show(label_seekbar_ll) }
         LabelUtils(context).textSizeInitialValue( label_text_size_edittext, label_sample_textview) //Setting Initial values for EditText and Text Size of Label
         //Configuring the Text Size Changing SeekBar
         LabelUtils(context).configureTextSizeChangeSeekBar(label_text_size_seekbar, label_sample_textview, label_text_size_edittext)
@@ -57,7 +59,8 @@ class Label2 : RelativeLayout {
             val y = getState()
             Log.d("xyz->label2", "$y")
         }
-        frame_property_select_btn.setOnClickListener { Utils(context).toast("Frame -> Clicked") }
+        frame_property_select_btn.setOnClickListener { Utils(context)
+            .toast("Frame -> Clicked") }
     }
 
     fun getState(): LabelCmd { //Called from DragAndDropContainer to Get The State of the Label

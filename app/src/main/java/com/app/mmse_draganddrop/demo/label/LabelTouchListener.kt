@@ -10,7 +10,7 @@ class LabelTouchListener @JvmOverloads constructor(
     label: Label2, /*cb: DraggableClickListener, */view: View, parent: View = view.parent as View,
     onDragActionListener: OnDragActionListener? = null) : View.OnTouchListener {
 
-    val label2: Label2 = label
+    //val label2: Label2 = label
     private var mView: View? = null
     private var mParent: View? = null
     private var isDragging: Boolean = false

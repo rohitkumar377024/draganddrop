@@ -1,4 +1,4 @@
-package com.app.mmse_draganddrop
+package com.app.mmse_draganddrop.extras
 
 import android.app.Activity
 import android.content.Context

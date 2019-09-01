@@ -10,7 +10,7 @@ import android.util.AttributeSet
 import android.util.Log
 import android.widget.*
 import com.app.draganddrop.R
-import com.app.mmse_draganddrop.Utils
+import com.app.mmse_draganddrop.extras.Utils
 import com.nabinbhandari.android.permissions.PermissionHandler
 import com.nabinbhandari.android.permissions.Permissions
 import kotlinx.android.synthetic.main.frame_property_layout.view.*
@@ -68,8 +68,11 @@ class PlayAudioFile : RelativeLayout {
         //todo todo
         //todo
         //todo -> Handling OnClick and Frame
-        on_click_include_layout_play.setOnClickListener { Utils(context).show(on_click_include_layout) }
-        frame_include_layout_play.setOnClickListener { Utils(context).show(frame_include_layout) }
+        on_click_include_layout_play.setOnClickListener { Utils(
+            context
+        ).show(on_click_include_layout) }
+        frame_include_layout_play.setOnClickListener { Utils(context)
+            .show(frame_include_layout) }
 
         on_click_property_setup_btn.setOnClickListener {
 //            Toast.makeText(context, "OnClick -> Clicked", Toast.LENGTH_SHORT).show()

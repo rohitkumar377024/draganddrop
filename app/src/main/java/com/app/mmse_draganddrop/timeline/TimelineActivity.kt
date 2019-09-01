@@ -6,7 +6,7 @@ import android.view.View
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import com.app.draganddrop.R
-import com.app.mmse_draganddrop.Utils
+import com.app.mmse_draganddrop.extras.Utils
 import kotlinx.android.synthetic.main.activity_timeline.*
 
 class TimelineActivity : AppCompatActivity() {
