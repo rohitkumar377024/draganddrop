@@ -1,4 +1,4 @@
-package com.app.mmse_draganddrop.extras
+package com.app.mmse_draganddrop.import_export
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -7,6 +7,8 @@ import android.view.Gravity
 import android.view.View
 import android.widget.RelativeLayout
 import android.widget.TextView
+import com.app.mmse_draganddrop.command.LabelCmd
+import com.app.mmse_draganddrop.extras.Utils
 import java.util.regex.Pattern
 
 class ImportUtils(private val ctx: Context) {
@@ -74,7 +76,8 @@ class ImportUtils(private val ctx: Context) {
         //val a = listOf<Pair<View, RelativeLayout.LayoutParams>>()
 
         //Creating LayoutParams As Per Assigned Width, Height, Top and Left
-        val params = RelativeLayout.LayoutParams(Utils(ctx).dpToPx(dimensionWidth), Utils(ctx).dpToPx(dimensionHeight))
+        val params = RelativeLayout.LayoutParams(Utils(ctx)
+            .dpToPx(dimensionWidth), Utils(ctx).dpToPx(dimensionHeight))
 
         val statusBarSize = Utils(ctx).dpToPx(25) //todo -> hardcoding status bar value to 25dp currently
         val actionBarBarSize = Utils(ctx).dpToPx(56)
@@ -89,6 +92,39 @@ class ImportUtils(private val ctx: Context) {
                 "Top -> $positionTop, Left -> $positionLeft, Width -> $dimensionWidth, Height -> $dimensionHeight")
 
         return viewPlusParamsList
+    }
+
+    //TODO -> This shall return the data in LabelCmd Form
+   fun getBackLabelCmdForm(labelIndividually: String): LabelCmd {
+        //val viewPlusParamsList: ArrayList<Pair<View, RelativeLayout.LayoutParams>> = arrayListOf()
+
+        val propertyValueList = labelIndividually.split(",")
+
+        var labelText = "" //Will store Text value for Label
+        var labelTextSize = 0f //Will store Text Size value for Label
+        var labelFontWeight = "" //Will store Font Weight value for Label
+
+        var positionTop = 0 //Will store Top Position for Label
+        var positionLeft = 0 //Will store Left Position for Label
+
+        var dimensionWidth = 0 //Will store Width Dimension for Label
+        var dimensionHeight = 0 //Will store Height Dimension for Label
+
+        propertyValueList.forEach {
+            val propertyValueSplitted = it.split("=")
+
+            when (propertyValueSplitted[0].trim().toLowerCase()) {
+                "text" -> labelText = propertyValueSplitted[1]
+                "textsize" -> labelTextSize = propertyValueSplitted[1].toFloat()
+                "fontweight" -> labelFontWeight = propertyValueSplitted[1].toLowerCase()
+                "top" -> positionTop = propertyValueSplitted[1].toInt()
+                "left" -> positionLeft = propertyValueSplitted[1].toInt()
+                "width" -> dimensionWidth = propertyValueSplitted[1].toInt()
+                "height" -> dimensionHeight = propertyValueSplitted[1].toInt()
+            }
+        }
+
+        return LabelCmd(labelText, labelTextSize, labelFontWeight, dimensionWidth, dimensionHeight, positionTop, positionLeft)
     }
 
 }

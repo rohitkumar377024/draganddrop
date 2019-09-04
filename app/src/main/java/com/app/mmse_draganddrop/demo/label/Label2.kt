@@ -37,13 +37,11 @@ class Label2 : RelativeLayout {
         label_sample_textview.setOnTouchListener(LabelTouchListener(this, label_sample_textview)) //Setting Touch Listener for Text
         label_sample_textview.setOnClickListener { LabelUtils(context).showPropertiesPane(propertiesPaneShowArr) } //Clicking on text shows Properties Pane
         //Showing Text Size Layout after 'Change Text Size' Button Clicked
-        label_change_text_size_main_btn.setOnClickListener { Utils(
-            context
-        ).show(label_seekbar_ll) }
+        label_change_text_size_main_btn.setOnClickListener { Utils(context).show(label_seekbar_ll) }
         LabelUtils(context).textSizeInitialValue( label_text_size_edittext, label_sample_textview) //Setting Initial values for EditText and Text Size of Label
         //Configuring the Text Size Changing SeekBar
         LabelUtils(context).configureTextSizeChangeSeekBar(label_text_size_seekbar, label_sample_textview, label_text_size_edittext)
-        //Making Done Button Work for Text Size1
+        //Making Done Button Work for Text Size
         label_text_size_done_btn.setOnClickListener { LabelUtils(context).textSizeDone(it, label_text_size_seekbar,  label_text_size_edittext, label_seekbar_ll) }
         handleFontWeight() //Initializing the Font Weight Parameter Here
         //Handling Change Text Stuff
