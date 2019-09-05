@@ -95,7 +95,7 @@ class ImportUtils(private val ctx: Context) {
     }
 
     //TODO -> This shall return the data in LabelCmd Form
-   fun getBackLabelCmdForm(labelIndividually: String): LabelCmd {
+    @SuppressLint("DefaultLocale") fun getBackLabelCmdForm(labelIndividually: String): LabelCmd {
         //val viewPlusParamsList: ArrayList<Pair<View, RelativeLayout.LayoutParams>> = arrayListOf()
 
         val propertyValueList = labelIndividually.split(",")

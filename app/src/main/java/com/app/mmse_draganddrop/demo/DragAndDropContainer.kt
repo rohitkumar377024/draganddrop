@@ -53,8 +53,8 @@ class DragAndDropContainer: RelativeLayout {
         //todo -> most important thing going on here
         //val labelCmdList = arrayListOf<LabelCmd>()
         allTheLabels.forEach {
-           // val labelCmdForm = ImportUtils(context).getBackLabelCmdForm(it)
-            ExportUtils.frameState.add(it)
+           val labelCmdForm = ImportUtils(context).getBackLabelCmdForm(it)
+            ExportUtils.frameState.add(labelCmdForm)
 
             Log.d("allTheLabels", it)
         }

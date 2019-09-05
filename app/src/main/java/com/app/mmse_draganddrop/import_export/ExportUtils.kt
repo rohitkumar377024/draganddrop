@@ -15,9 +15,18 @@ class ExportUtils(private val ctx: Context) {
     private fun stateOfIndividualFrame(): String {
         var finalString = ""
         frameState.forEach {
-            val labelIndividually = (it as Label2).getState()
-            Log.d("check3", "${(it as Label2).getState()}")
-            finalString += "$labelIndividually\n" //Moving to new line after every line processed
+            //todo -> fIX FOR NOW HERE
+            if (it is Label2) {
+                val labelIndividually = (it as Label2).getState()
+                Log.d("check3", "${(it as Label2).getState()}")
+                finalString += "$labelIndividually\n" //Moving to new line after every line processed
+            } else {
+                val labelIndividually = it
+                Log.d("check3", "$it")
+                finalString += "$labelIndividually\n" //Moving to new line after every line processed
+            }
+
+
         }
         return finalString
     }
